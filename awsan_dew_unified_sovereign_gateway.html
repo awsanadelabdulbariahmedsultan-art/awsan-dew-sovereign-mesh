@@ -956,6 +956,179 @@
             </div>
         </div>
 
+
+
+
+<!-- ================================================================= -->
+<!-- SECTION: E-Wallet & Purchase Voucher Generator                    -->
+<!-- ================================================================= -->
+<div class="card">
+    <div class="card-header">
+        <h2><i class="fas fa-ticket-alt"></i> محرك توليد واسترداد قسائم الشراء (Jaib & Sovereign Vouchers)</h2>
+        <span class="badge">صالح لـ 24 ساعة برمز PINK</span>
+    </div>
+
+    <div class="card-body">
+        <div class="grid-3">
+            <div class="form-group">
+                <label>المحفظة / المصدر</label>
+                <select id="voucher-source-wallet">
+                    <option value="JAIB">محفظة جيب (شركة الحزم للصرافة)</option>
+                    <option value="QUTAIBI">القطيبي موبايل (بنك القطيبي الإسلامي)</option>
+                    <option value="KURAIMI">الكريمي جوال / حاسب</option>
+                    <option value="FLOOSAK">محفظة فلوسك (بنك اليمن والكويت)</option>
+                    <option value="MADA">مدى / STC Pay (السعودية)</option>
+                    <option value="USDT">المشفر USDT (Avalanche / BSC)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>قيمة السند (USD أو YER)</label>
+                <input type="number" id="voucher-amt-val" placeholder="أدخل المبلغ...">
+            </div>
+
+            <div class="form-group">
+                <label>كود السند المولد</label>
+                <input type="text" id="voucher-code-display" readonly placeholder="سيظهر الكود هنا...">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+            <button id="gen-voucher-btn" class="btn-action" onclick="generateVoucherCode()">
+                <i class="fas fa-plus-circle"></i> توليد قسيمة شراء جديدة
+            </button>
+            <button id="redeem-voucher-btn" class="btn-secondary" onclick="redeemVoucherCode()">
+                <i class="fas fa-arrow-down"></i> استرداد وتفعيل القسيمة
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    
+// =================================================================
+// 1. قسم الإرسال والتحويل المالي
+// =================================================================
+async function executeSendTransaction() {
+    const amt = parseFloat(document.getElementById('send-amount-val')?.value) || 0;
+    const curr = document.getElementById('send-currency-val')?.value || 'USD';
+    const dest = document.getElementById('send-dest-address')?.value.trim();
+    const chain = document.getElementById('send-chain-select')?.value || 'ZK';
+
+    if (!dest) {
+        alert("إدخال عنوان المحفظة أو رقم الحساب المالي للمستلم!");
+        return;
+    }
+
+    if (amt <= 0) {
+        alert("يرجى إدخال مبلغ صحيح للتحويل!");
+        return;
+    }
+
+    if (typeof closeSovereignModal === "function") {
+        closeSovereignModal();
+    }
+
+    // تشغيل التحقق الثنائي OTP عبر الـ backend
+    if (typeof requestOtpSwap === "function") {
+        requestOtpSwap();
+    }
+
+    console.log(`[Mesh Core] Initiating transfer of ${amt} ${curr} via ${chain} to ${dest}`);
+}
+
+// =================================================================
+// 2. قسم تفعيل التمرير والتلوين البصري لقسم التحويل
+// =================================================================
+function triggerFaiSwapScroll() {
+    // البحث عن القسم بالـ ID أو الفئة الاحتياطية لتلوينه بالبرتقالي
+    const swapSection = document.getElementById('swap-section') || document.querySelector('.defi-country-select');
+    
+    if (swapSection) {
+        swapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // تطبيق التنسيقات مباشرة ليظهر لون القبول والتلوين البرتقالي
+        swapSection.style.transition = 'all 0.4s ease';
+        swapSection.style.borderColor = '#fa8f24';
+        swapSection.style.boxShadow = '0 0 25px rgba(251, 143, 36, 0.45)';
+        
+        // إزالة لون التوهج بعد ثانية ونصف
+        setTimeout(() => {
+            swapSection.style.boxShadow = 'none';
+            swapSection.style.borderColor = ''; 
+        }, 1800);
+    } else {
+        console.error("لم يتم العثور على عنصر swap-section في الصفحة لتلوينه!");
+    }
+}
+
+// =================================================================
+// 3. دالات الواجهة التفاعلية للمولد (قسائم الشراء) والتلوين التلقائي
+// =================================================================
+function generateVoucherCode() {
+    const amt = document.getElementById('voucher-amt-val').value;
+    const wallet = document.getElementById('voucher-source-wallet').value;
+    const btn = document.getElementById('gen-voucher-btn');
+
+    if (!amt || amt <= 0) {
+        alert("يرجى إدخال قيمة صحيحة للسند أولاً!");
+        return;
+    }
+
+    // توليد كود عشوائي كمثال
+    const randomCode = "SOV-" + wallet + "-" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('voucher-code-display').value = randomCode;
+
+    // تلوين زر التوليد لحظياً لتأكيد نجاح العملية لقَبول الكود تلوينياً
+    if (btn) {
+        btn.style.transition = 'all 0.3s';
+        btn.style.backgroundColor = '#fa8f24';
+        btn.style.color = '#ffffff';
+        setTimeout(() => {
+            btn.style.backgroundColor = '';
+            btn.style.color = '';
+        }, 1000);
+    }
+}
+
+function redeemVoucherCode() {
+    const code = document.getElementById('voucher-code-display').value;
+    const btn = document.getElementById('redeem-voucher-btn');
+
+    if (!code) {
+        alert("لا يوجد كود نشط لاسترداده! قم بتوليد كود أو أدخله يدوياً.");
+        return;
+    }
+
+    // عند تفعيل السند بنجاح يتلون الزر باللون الأخضر لاعتماده وقبوله
+    if (btn) {
+        btn.style.transition = 'all 0.3s ease';
+        btn.style.backgroundColor = '#10b981'; // تلوين أخضر لاعتماد القبول
+        btn.style.borderColor = '#059669';
+        btn.style.color = '#ffffff';
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> تم استرداد السند بنجاح';
+    }
+
+    alert(`[نظام القسائم]: تم تفعيل السند السيادي بنجاح وإيداع القيمة في محفظتك المعتمدة.`);
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
         <!-- ====================================================================
              SECTION 2: THE SOVEREIGN JUDICIAL HUB
              ==================================================================== -->

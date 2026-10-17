@@ -598,454 +598,583 @@
             </div>
 
 
+<!-- 1. المستودع المالي والـ DeFi المدمج والشامل -->
+<div id="hub-financial" class="hub-content active">
 
-    <!-- 1. المستودع المالي والـ DeFi -->
-    <div id="hub-financial" class="hub-content active">
-        <!-- الخزينة المركزية الموحدة للمستخدم -->
-        <div class="card" style="border-color: var(--accent-gold);">
-            <div style="font-size: 0.8rem; color: var(--accent-emerald);">🛡️ الخزينة المركزية الموحدة للمستخدم</div>
-            <h2 style="margin: 8px 0; color: var(--accent-gold); font-size: 1.8rem;">\$125,480.00 USD</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
-                <div>ريال عدن: 200,768,000 YER</div>
-                <div>ريال صنعاء: 66,504,400 YER</div>
-                <div>ريال سعودي: 470,550 SAR</div>
-                <div>درهم إماراتي: 460,760 AED</div>
+    <!-- Comprehensive Omnichain Balance Hero Section -->
+    <div class="card" style="background: linear-gradient(135deg, rgba(14,22,40,0.96) 0%, rgba(7,12,24,0.98) 100%); border: 2px solid var(--accent-gold); margin-bottom: 22px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399; margin-bottom: 4px; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; display: inline-block;">
+                    🛡️ الخزينة المركزية الموحدة للمستخدم
+                </span>
+                <h2 style="font-size: 1.4rem; color: #fff; margin: 6px 0 0 0;">
+                    💼 الرصيد التراكمي المتاح والمقابل بكافة العملات والشبكات
+                </h2>
             </div>
-
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
-                <button class="btn-action btn-emerald" style="padding: 8px 4px; font-size: 0.8rem;">↗️ إرسال</button>
-                <button class="btn-action btn-blue" style="padding: 8px 4px; font-size: 0.8rem;">↙️ استلام</button>
-                <button class="btn-action btn-gold" style="padding: 8px 4px; font-size: 0.8rem;" onclick="scrollToSwap()">🔄 Swap</button>
-                <button class="btn-action btn-outline" style="padding: 8px 4px; font-size: 0.8rem;">🪪 KYC</button>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="btn-action btn-emerald" style="padding: 7px 14px; font-size: 0.82rem; width: auto;" onclick="openTransferModal('SEND')">↗️ إرسال وتحويل</button>
+                <button class="btn-action btn-blue" style="padding: 7px 14px; font-size: 0.82rem; width: auto;" onclick="openTransferModal('RECEIVE')">↙️ استلام وإيداع</button>
+                <button class="btn-action btn-gold" style="padding: 7px 14px; font-size: 0.82rem; width: auto;" onclick="scrollToSwap()">🔄 Swap</button>
+                <button class="btn-action btn-outline" style="padding: 7px 14px; font-size: 0.82rem; width: auto;" onclick="openKycModal()">🪪 توثيق KYC</button>
             </div>
         </div>
 
-        <!-- محرك الـ Multi-Chain Swap وقسائم الشراء -->
-        <div id="swap-section" class="card">
-            <h3 class="card-title" style="color: var(--accent-gold);">🔄 محفظة التبادل اللحظي (Multi-Chain DeFi Swap)</h3>
-            
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px;">
+                <small style="color: #94a3b8; display: block;">الرصيد المعياري الموحد ($ USD)</small>
+                <strong style="color: var(--accent-gold); font-size: 1.6rem; font-family: monospace; display: block; margin: 4px 0;" id="user-primary-balance-usd">$125,480.00</strong>
+                <div style="font-size: 0.74rem; color: #34d399;">✓ متاح ومؤكد لشراء صكوك RWA والتداول</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px;">
+                <small style="color: #94a3b8; display: block;">المقابل بالريال اليمني (عدن & صنعاء)</small>
+                <div style="font-size: 0.95rem; font-weight: bold; color: #fff; font-family: monospace;" id="user-bal-yer-ade">200,768,000 YER (عدن)</div>
+                <div style="font-size: 0.85rem; color: var(--accent-gold); font-family: monospace; margin-top: 4px;" id="user-bal-yer-san">66,504,400 YER (صنعاء)</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px;">
+                <small style="color: #94a3b8; display: block;">المقابل بالريال السعودي والدرهم</small>
+                <div style="font-size: 0.95rem; font-weight: bold; color: #38bdf8; font-family: monospace;" id="user-bal-sar">470,550.00 SAR</div>
+                <div style="font-size: 0.85rem; color: #cbd5e1; font-family: monospace; margin-top: 4px;" id="user-bal-aed">460,511.00 AED</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px;">
+                <small style="color: #94a3b8; display: block;">المقابل بالعملات الرقمية المشفرة (Omnichain)</small>
+                <div style="font-size: 0.88rem; font-weight: bold; color: #34d399; font-family: monospace;">125,480.00 USDT | 125,480.00 ADT</div>
+                <div style="font-size: 0.80rem; color: #94a3b8; font-family: monospace; margin-top: 4px;">4,481.4 AVAX • 211.2 BNB • 36.8 ETH</div>
+            </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.45); border: 1px dashed var(--border-color); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div style="font-size: 0.78rem; color: #94a3b8;">🔗 عنوان المحفظة السيادية الموحد المربوط بكافة الشبكات (Unclipped 42-Char Web3 Address):</div>
+                <code style="color: #38bdf8; font-size: 0.86rem; word-break: break-all; font-family: monospace;" id="hero-user-wallet-address">0x22848f7963Ea954771120d842BD658f12D4Abb43</code>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+                <span style="background: rgba(56,189,248,0.15); color: #38bdf8; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px;">Avalanche C-Chain</span>
+                <span style="background: rgba(245,158,11,0.15); color: #f59e0b; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px;">BNB Chain</span>
+                <span style="background: rgba(16,185,129,0.15); color: #34d399; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px;">Ethereum</span>
+                <span style="background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px;">zkSync Era</span>
+                <button class="btn-action btn-outline" style="padding: 3px 8px; font-size: 0.74rem; width: auto;" onclick="copyHeroWalletAddress()">📋 نسخ العنوان</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- محرك الـ Multi-Chain Swap ومقاسم الدفع -->
+    <div id="swap-section" class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+            <h3 class="card-title" style="color: var(--accent-gold); margin: 0;">
+                🔄 محفظة التبادل المالي اللحظي والـ DeFi متعدد الشبكات (Multi-Chain DeFi Swap)
+            </h3>
+            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.75rem; padding: 4px 8px; border-radius: 6px;">
+                130+ دولة • 9 شبكات بلوكشين • سحب مباشر / كود شراء / تحويل بنكي / فيزا وماستركارد • OTP
+            </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; background: rgba(255,255,255,0.02); padding: 14px; border-radius: 10px; border: 1px dashed var(--border-color); margin-bottom: 18px;">
             <div class="form-group">
-                <label>اختر الدولة والولاية القضائية المالية:</label>
-                <select id="country-select" class="form-control" onchange="handleCountryChange()">
+                <label>🌐 الدولة ومقسم الدفع السيادي (Country Rail)</label>
+                <select id="defi-country-select" class="form-control" onchange="onDefiCountryChanged(this.value)">
                     <option value="YE">اليمن (Yemen) - مقاسم البنك المركزي</option>
                     <option value="SA">المملكة العربية السعودية (KSA) - مدى & سداد</option>
-                    <option value="AE">الإمارات العربية المتحدة (UAE) - مقسم آني</option>
+                    <option value="AE">الإمارات العربية المتحدة (UAE) - مقسم آني CBUAE</option>
                     <option value="EG">مصر (Egypt) - شبكة ميزة & إنستاباي</option>
                     <option value="INTL">دولي / شبكات الويب 3 المشفرة</option>
                     <option value="OTHER">أخرى (إدخال دولة غير مدرجة يدوياً)</option>
                 </select>
-            </div>
-
-            <div id="other-country-box" class="form-group" style="display:none;">
-                <label>اسم الدولة المدخلة يدوياً:</label>
-                <input type="text" class="form-control" placeholder="أدخل اسم الدولة...">
-            </div>
-
-            <div class="form-group">
-                <label>وسيلة الدفع والمحفظة الرقمية:</label>
-                <select id="payment-rail" class="form-control" onchange="handlePaymentRailChange()"></select>
-            </div>
-
-            <!-- خيار التقسيط الإسلامي BNPL (تمارا / تابي) -->
-            <div id="bnpl-box" style="display:none; margin-bottom: 12px; background: rgba(245, 158, 11, 0.1); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 12px;">
-                <div style="font-weight: bold; color: var(--accent-gold); margin-bottom: 6px;">🛍️ خيار التقسيط الإسلامي المعتمد (تمارا - Tamara):</div>
-                <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 8px;">قسّم فاتورتك على 4 دفعات شهرية بدون فوائد أو رسوم خفية.</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <input type="text" class="form-control" placeholder="الهوية الوطنية / الإقامة">
-                    <input type="tel" class="form-control" placeholder="رقم الجوال بنفاذ">
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;" class="form-group">
-                <div>
-                    <label>المبلغ المراد تبديله:</label>
-                    <input type="number" id="swap-amount" class="form-control" value="1000">
-                </div>
-                <div>
-                    <label>عملة القسيمة / التحويل:</label>
-                    <select id="swap-currency" class="form-control">
-                        <option value="USD">دولار أمريكي (USD)</option>
-                        <option value="YER_ADE">ريال يمني - عدن (YER)</option>
-                        <option value="YER_SAN">ريال يمني - صنعاء (YER)</option>
-                        <option value="SAR">ريال سعودي (SAR)</option>
-                        <option value="AED">درهم إماراتي (AED)</option>
-                        <option value="USDT">تيذر رقمي (USDT)</option>
-                    </select>
+                <div class="custom-input-box" id="defi-custom-country-box" style="display: none; margin-top: 6px;">
+                    <input type="text" id="defi-custom-country-input" class="form-control" placeholder="اكتب اسم الدولة الجديدة..." oninput="updateDefiSwapCalculation()">
                 </div>
             </div>
 
             <div class="form-group">
-                <label>نوع الشبكة (Blockchain / Clearing Network):</label>
-                <select id="swap-network" class="form-control">
-                    <option value="ZK">zkSync Era AWSAN (L2 Rollup)</option>
-                    <option value="AVAX">Avalanche C-Chain</option>
-                    <option value="BSC">BNB Smart Chain</option>
-                    <option value="ETH">Ethereum Mainnet</option>
-                    <option value="SOL">Solana Network</option>
-                    <option value="CBY">مقسم البنك المركزي اليمني الوطني</option>
+                <label>📱 رقم الهاتف / الجوال المرتبط بالمحفظة (Mobile No)</label>
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" id="defi-phone-code" class="form-control" value="+967" style="width: 75px; text-align: center; font-weight: bold; color: var(--accent-gold);" readonly>
+                    <input type="text" id="defi-mobile-number" class="form-control" value="777852433" placeholder="أدخل رقم الهاتف..." oninput="updateDefiSwapCalculation()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>💼 المحفظة الإلكترونية / وسيلة الدفع المعتمدة</label>
+                <select id="defi-local-wallet-select" class="form-control" onchange="onLocalWalletSelected(this.value)"></select>
+                <div class="custom-input-box" id="defi-custom-wallet-box" style="display: none; margin-top: 6px;">
+                    <input type="text" id="defi-custom-wallet-input" class="form-control" placeholder="اكتب اسم المحفظة أو البنك المحلي...">
+                </div>
+            </div>
+        </div>
+
+        <!-- خيار التقسيط الإسلامي BNPL -->
+        <div id="bnpl-box" style="display:none; margin-bottom: 16px; background: rgba(245, 158, 11, 0.1); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: bold; color: var(--accent-gold); margin-bottom: 6px;">🛍️ خيار التقسيط الإسلامي المعتمد (تمارا / تابي):</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 8px;">قسّم فاتورتك على 4 دفعات شهرية بدون فوائد أو رسوم خفية.</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <input type="text" class="form-control" placeholder="الهوية الوطنية / الإقامة">
+                <input type="tel" class="form-control" placeholder="رقم الجوال المسجل بنفاذ">
+            </div>
+        </div>
+
+        <!-- قناة رمز الأمان OTP -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+            <label style="color: var(--accent-gold); font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 6px;">
+                🛡️ قناة استلام رمز الأمان والتأكيد المصرفي (Security Verification Channel):
+            </label>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
+                    <input type="radio" name="otp-delivery-channel" value="WHATSAPP" checked onchange="onOtpChannelChanged(this.value)">
+                    <span style="color: #34d399;">🟢 رسالة واتساب مشفرة طرفياً (WhatsApp OTP - الأسرع E2EE)</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
+                    <input type="radio" name="otp-delivery-channel" value="SMS" onchange="onOtpChannelChanged(this.value)">
+                    <span style="color: #38bdf8;">📱 رسالة نصية قصيرة (SMS OTP - تعمل بدون إنترنت)</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
+                    <input type="radio" name="otp-delivery-channel" value="BOTH" onchange="onOtpChannelChanged(this.value)">
+                    <span style="color: var(--accent-gold);">⚡ القناة المزدوجة التلقائية (WhatsApp + SMS معاً)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- طريقة السحب والخصم -->
+        <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 14px; margin-bottom: 18px;">
+            <label style="color: var(--accent-gold); font-weight: 700; font-size: 0.92rem; display: block; margin-bottom: 8px;">
+                💳 طريقة السحب والخصم / قناة السداد المعتمدة:
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
+                        <input type="radio" name="defi-debit-mode" value="DIRECT_MOBILE" checked onchange="toggleDebitMode(this.value)">
+                        <span>1. سحب مباشر من حساب الهاتف</span>
+                    </label>
+                    <small style="color: #94a3b8; display: block; margin-top: 4px;">خصم تلقائي بمصادقة مقسم البنك المركزي وOTP.</small>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
+                        <input type="radio" name="defi-debit-mode" value="VOUCHER_CODE" onchange="toggleDebitMode(this.value)">
+                        <span>2. سحب بكود شراء فوري (Voucher)</span>
+                    </label>
+                    <small style="color: #94a3b8; display: block; margin-top: 4px;">خصم برمز PIN وقسيمة شراء صالحة 24 ساعة.</small>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
+                        <input type="radio" name="defi-debit-mode" value="BANK_WIRE" onchange="toggleDebitMode(this.value)">
+                        <span>3. تحويل بنكي وحساب/آيبان</span>
+                    </label>
+                    <small style="color: #94a3b8; display: block; margin-top: 4px;">إيداع عبر الحساب المصرفي ورقم الآيبان (IBAN).</small>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
+                        <input type="radio" name="defi-debit-mode" value="CARDS_VISA_MASTER" onchange="toggleDebitMode(this.value)">
+                        <span>4. بطاقات فيزا وماستركارد</span>
+                    </label>
+                    <small style="color: #94a3b8; display: block; margin-top: 4px;">دفع فوري بالبطاقات البنكية بحماية 3DS.</small>
+                </div>
+            </div>
+
+            <!-- حاويات الإدخال التفصيلية حسب نوع السحب -->
+            <div id="defi-voucher-input-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px; border: 1px dashed var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group">
+                        <label>كود قسيمة الشراء المخصوم منها (Voucher Code)</label>
+                        <input type="text" id="defi-voucher-code" class="form-control" value="JAIB-984210" style="color: var(--accent-gold); font-family: monospace; font-weight: bold;">
+                    </div>
+                    <div class="form-group">
+                        <label>رمز PIN السري للقسيمة (4 أرقام)</label>
+                        <input type="password" id="defi-voucher-pin" class="form-control" value="1448" maxlength="6" style="text-align: center; letter-spacing: 4px;">
+                    </div>
+                </div>
+            </div>
+
+            <div id="defi-bank-wire-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px dashed #38bdf8;">
+                <h4 style="color: #38bdf8; font-size: 0.88rem; margin: 0 0 8px 0;">🏛️ بيانات التحويل والإيداع البنكي المباشر:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+                    <div class="form-group">
+                        <label>اسم البنك المصدر والمودع لديه</label>
+                        <input type="text" id="defi-bank-name" class="form-control" value="بنك القطيبي الإسلامي / بنك الكريمي">
+                    </div>
+                    <div class="form-group">
+                        <label>اسم المستفيد المعتمد</label>
+                        <input type="text" id="defi-bank-beneficiary" class="form-control" value="أوسان عادل عبدالباري أحمد سلطان (Awsan Dew)">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الحساب البنكي (Account Number)</label>
+                        <input type="text" id="defi-bank-acc" class="form-control" value="1010305468" style="font-family: monospace; font-weight: bold;">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الآيبان الدولي (IBAN)</label>
+                        <input type="text" id="defi-bank-iban" class="form-control" value="YE92CBYE0001010103054681" style="font-family: monospace; font-size: 0.82rem; color: var(--accent-gold);">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                    <div class="form-group">
+                        <label>رقم هاتف المودع للتأكيد</label>
+                        <input type="text" id="defi-bank-depositor-phone" class="form-control" value="00967777852433" dir="ltr">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم إشعار الحوالة / السند البنكي</label>
+                        <input type="text" id="defi-bank-wire-ref" class="form-control" placeholder="أدخل رقم إشعار البنك (مثال: REF-CBY-884920)...">
+                    </div>
+                </div>
+            </div>
+
+            <div id="defi-cards-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px dashed #ef4444;">
+                <h4 style="color: #ef4444; font-size: 0.88rem; margin: 0 0 8px 0;">💳 بيانات بطاقة فيزا أو ماستركارد البنكية:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px;">
+                    <div class="form-group">
+                        <label>الاسم على البطاقة</label>
+                        <input type="text" id="defi-card-holder" class="form-control" value="AWSAN A A SULTAN">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم البطاقة (16 رقماً)</label>
+                        <input type="text" id="defi-card-number" class="form-control" placeholder="4111 •••• •••• 1111" maxlength="19" style="font-family: monospace; letter-spacing: 2px;">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ الانتهاء (MM/YY)</label>
+                        <input type="text" id="defi-card-expiry" class="form-control" placeholder="12/28" maxlength="5" style="text-align: center; font-family: monospace;">
+                    </div>
+                    <div class="form-group">
+                        <label>رمز الأمان (CVV)</label>
+                        <input type="password" id="defi-card-cvv" class="form-control" placeholder="•••" maxlength="4" style="text-align: center; letter-spacing: 3px;">
+                    </div>
+                </div>
+                <small style="color: #94a3b8; display: block; margin-top: 4px;">🛡️ المعاملة مؤمنة بنظام الحماية البنكي ثلاثي الأبعاد (3D Secure Verified by Visa & Mastercard).</small>
+            </div>
+        </div>
+
+        <!-- حاسبة المبالغ والمقاصة اللحظية -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+            <div class="form-group">
+                <label>من العملة / وسيلة الدفع (You Pay)</label>
+                <select id="defi-from-token" class="form-control" onchange="updateDefiSwapCalculation()">
+                    <option value="USD" selected>USD (دولار أمريكي - سويفت / فيزا)</option>
+                    <option value="YER_ADE">YER (ريال يمني - عدن / مقسم البنك المركزي)</option>
+                    <option value="YER_SAN">YER (ريال يمني - صنعاء / مقسم البنك المركزي)</option>
+                    <option value="SAR">SAR (ريال سعودي - مقسم مدى / سريع)</option>
+                    <option value="AED">AED (درهم إماراتي - منصة آني CBUAE)</option>
+                    <option value="EGP">EGP (جنيه مصري - ميزة / إنستاباي)</option>
+                    <option value="USDT">USDT (Tether USD - متعدد الشبكات)</option>
+                    <option value="AVAX">AVAX (Native Avalanche)</option>
+                    <option value="BNB">BNB (Smart Chain Native)</option>
                 </select>
             </div>
-
-            <div style="background: #090d16; border: 1px dashed #334155; border-radius: 8px; padding: 10px; font-size: 0.8rem; margin-bottom: 12px;">
-                <div style="color: var(--accent-emerald); font-weight: bold;">توزيع الاستقطاع السيادي المعتمد (1.0% Royalty Split):</div>
-                <div style="color: var(--text-muted); margin-top: 4px;">• 0.5% لمحفظة المبتكر الرقمية: 0x2284...4Abb43</div>
-                <div style="color: var(--text-muted);">• 0.5% للحساب البنكي الرسمي للمبتكر بالبنك المركزي</div>
+            <div class="form-group">
+                <label>إلى العملة / الصك المستلم (You Receive)</label>
+                <select id="defi-to-token" class="form-control" onchange="updateDefiSwapCalculation()">
+                    <option value="ADT" selected>ADT (Awsan Dew Sovereign Token)</option>
+                    <option value="RWA_SHARE">صك حصة ملكية عقارية مشاعة (RWA Deed)</option>
+                    <option value="USDT">USDT (Tether Stablecoin)</option>
+                    <option value="SAR">SAR (ريال سعودي مسال بالبنك)</option>
+                    <option value="USD">USD (دولار أمريكي محول للحساب)</option>
+                </select>
             </div>
+            <div class="form-group">
+                <label>المبلغ المراد تبديله أو سداده</label>
+                <input type="number" id="defi-amount" class="form-control" value="1000" oninput="updateDefiSwapCalculation()">
+            </div>
+        </div>
 
-            <button class="btn-action btn-gold" onclick="executeSwapProcess()">تأكيد عملية التبديل وطلب رمز الأمان (OTP)</button>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+            <div class="form-group">
+                <label>🧾 العملة والمبلغ الصافي المخصوم بدقة</label>
+                <input type="text" id="defi-deducted-currency-spec" class="form-control" value="1000.00 USD" readonly style="color: #f43f5e; font-weight: bold;">
+            </div>
+            <div class="form-group">
+                <label>العائد الصافي المتوقع بعد اقتطاع الرسوم</label>
+                <input type="text" id="defi-expected-receive" class="form-control" value="990.00 ADT" readonly style="color: #10b981; font-weight: bold; font-size: 1.05rem;">
+            </div>
+            <div class="form-group">
+                <label>تفصيل التوزيع المالي الشفاف للرسوم (1.0% Split)</label>
+                <input type="text" id="defi-fee-split" class="form-control" value="0.5% محفظة المبتكر ($5.00) + 0.5% حساب البنك المركزي ($5.00)" readonly style="color: var(--accent-gold); font-size: 0.85rem;">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+                <label>🌐 شبكة البلوكشين المستهدفة</label>
+                <select id="defi-network" class="form-control">
+                    <option value="ZK">zkSync Era AWSAN (L2 Rollup)</option>
+                    <option value="AVAX" selected>Avalanche C-Chain (Fast Finality < 0.5s)</option>
+                    <option value="BSC">BNB Smart Chain (Low Gas Fee)</option>
+                    <option value="ETH">Ethereum Mainnet (Institutional Security)</option>
+                    <option value="SOL">Solana Omnichain (High Throughput)</option>
+                    <option value="POLYGON">Polygon PoS</option>
+                    <option value="CBY">مقسم البنك المركزي الوطني (ISO 20022)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>💼 عنوان محفظة الويب 3 المستلمة (42 حرفاً)</label>
+                <input type="text" id="defi-dest-wallet" class="form-control" value="0x22848f7963Ea954771120d842BD658f12D4Abb43" style="font-family: monospace; font-size: 0.85rem; color: #38bdf8;">
+            </div>
+        </div>
+
+        <!-- صندوق التحقق الأمني OTP -->
+        <div id="defi-otp-box" style="background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--accent-gold); border-radius: 10px; padding: 14px; margin: 14px 0; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <strong style="color: var(--accent-gold);">🛡️ التحقق الأمني الثنائي (OTP Verification):</strong>
+                <span style="background: rgba(16,185,129,0.2); color:#34d399; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;" id="defi-otp-timer-badge">مهلة الرمز: 120 ثانية</span>
+            </div>
+            <p style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 10px;" id="defi-otp-instruction-text">
+                تم إرسال رمز أمان OTP إلى الهاتف <strong id="defi-otp-target-phone" dir="ltr" style="color:#fff;">+967 777852433</strong> عبر <span id="defi-otp-channel-label" style="color:#34d399; font-weight:bold;">تطبيق واتساب المشفر E2EE</span>.
+            </p>
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <input type="text" id="defi-user-otp-input" class="form-control" placeholder="أدخل رمز الـ OTP..." maxlength="6" style="width: 200px; text-align: center; font-size: 1.1rem; font-weight: 800; letter-spacing: 4px; font-family: monospace; color: var(--accent-gold);">
+                <button class="btn-action btn-emerald" style="width: auto; padding: 10px 16px;" onclick="confirmDefiOtpAndExecute()">✓ تأكيد الرمز وتنفيذ التحويل اللحظي</button>
+                <button class="btn-action btn-outline" style="width: auto; padding: 10px 14px;" onclick="resendDefiOtp()">🔄 إعادة الإرسال</button>
+                <button class="btn-action btn-outline" id="btn-fallback-sms" style="border-color:#38bdf8; color:#38bdf8; width: auto; padding: 10px 14px;" onclick="switchToSmsOtpFallback()">📱 إرسال عبر SMS</button>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+            <button class="btn-action btn-gold" id="btn-trigger-swap" style="flex: 2; min-width: 240px;" onclick="requestDefiSwapOtp()">
+                ⚡ بدء السحب والتبديل المالي وطلب رمز الأمان OTP
+            </button>
+            <button class="btn-action btn-outline" style="flex: 1; min-width: 200px;" onclick="syncSwapToJudicialNotary()">
+                📜 ربط وتوثيق العملية بصك قضائي RWA
+            </button>
+        </div>
+
+        <!-- نتيجة التبديل المالي وتوريد النسب -->
+        <div id="defi-swap-result" style="display: none; margin-top: 16px; background: rgba(16,185,129,0.08); border: 1px solid #10b981; border-radius: 8px; padding: 14px;">
+            <div style="color: #34d399; font-weight: bold; margin-bottom: 10px; font-size: 0.95rem;">
+                ✓ تم إنجاز التبديل المالي اللحظي وتأكيد الخصم بالـ OTP وتوريد النسب السيادية
+            </div>
+            <div style="font-size: 0.85rem; line-height: 1.8;">
+                <div><span>رقم عملية التبديل (Swap Tx ID):</span> <strong id="defi-tx-id" style="color: var(--accent-gold); font-family: monospace;">-</strong></div>
+                <div><span>الهاش التشفيري بالبلوكتشين:</span> <strong id="defi-tx-hash" style="color: #38bdf8; font-family: monospace; word-break: break-all;">-</strong></div>
+                <div><span>محفظة الخزينة المستلمة (0.5%):</span> <strong style="font-family: monospace; font-size: 0.8rem;">0x22848f7963Ea954771120d842BD658f12D4Abb43</strong></div>
+                <div><span>حساب البنك المركزي المستلم (0.5%):</span> <strong style="font-family: monospace; color: #34d399;">01001-DEV-305468-ADE / 01002-DEV-305468-SAN</strong></div>
+                <div><span>بصمة التدقيق المحاسبي (transparencyAuditProof):</span> <strong id="defi-audit-proof" style="color: #10b981; font-family: monospace; word-break: break-all;">-</strong></div>
+            </div>
         </div>
     </div>
 
-
-
-
-            <!-- Comprehensive Omnichain Balance Hero Section -->
-            <div class="card" style="background: linear-gradient(135deg, rgba(14,22,40,0.96) 0%, rgba(7,12,24,0.98) 100%); border: 2px solid var(--gold); margin-bottom: 22px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                    <div>
-                        <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399; margin-bottom: 4px;"><i class="fas fa-shield-alt"></i> الخزينة المركزية الموحدة للمستخدم</span>
-                        <h2 style="font-size: 1.4rem; color: #fff; margin: 0;"><i class="fas fa-wallet" style="color: var(--gold);"></i> الرصيد التراكمي المتاح والمقابل بكافة العملات والشبكات</h2>
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                        <button class="btn-emerald" style="padding: 7px 14px; font-size: 0.82rem;" onclick="openTransferModal('SEND')"><i class="fas fa-paper-plane"></i> إرسال وتحويل</button>
-                        <button class="btn-secondary" style="padding: 7px 14px; font-size: 0.82rem; border-color: var(--blue); color: var(--blue);" onclick="openTransferModal('RECEIVE')"><i class="fas fa-qrcode"></i> استلام وإيداع</button>
-                        <button class="btn-action" style="padding: 7px 14px; font-size: 0.82rem;" onclick="openKycModal()"><i class="fas fa-id-card"></i> توثيق KYC</button>
-                    </div>
-                </div>
-
-                <div class="balance-hero-grid">
-                    <div class="balance-card-sub crypto">
-                        <small style="color: #94a3b8; display: block;">الرصيد المعياري الموحد ($ USD)</small>
-                        <strong style="color: var(--gold-light); font-size: 1.6rem; font-family: monospace;" id="user-primary-balance-usd">$125,480.00</strong>
-                        <div style="font-size: 0.74rem; color: #34d399; margin-top: 4px;">✓ متاح ومؤكد لشراء صكوك RWA والتداول</div>
-                    </div>
-                    <div class="balance-card-sub sovereign">
-                        <small style="color: #94a3b8; display: block;">المقابل بالريال اليمني (عدن & صنعاء)</small>
-                        <div style="font-size: 0.95rem; font-weight: bold; color: #fff; font-family: monospace;" id="user-bal-yer-ade">200,768,000 YER (عدن)</div>
-                        <div style="font-size: 0.85rem; color: var(--gold-light); font-family: monospace;" id="user-bal-yer-san">66,504,400 YER (صنعاء)</div>
-                    </div>
-                    <div class="balance-card-sub">
-                        <small style="color: #94a3b8; display: block;">المقابل بالريال السعودي والدرهم</small>
-                        <div style="font-size: 0.95rem; font-weight: bold; color: #38bdf8; font-family: monospace;" id="user-bal-sar">470,550.00 SAR</div>
-                        <div style="font-size: 0.85rem; color: #cbd5e1; font-family: monospace;" id="user-bal-aed">460,511.00 AED</div>
-                    </div>
-                    <div class="balance-card-sub crypto">
-                        <small style="color: #94a3b8; display: block;">المقابل بالعملات الرقمية المشفرة (Omnichain)</small>
-                        <div style="font-size: 0.88rem; font-weight: bold; color: #34d399; font-family: monospace;">125,480.00 USDT | 125,480.00 ADT</div>
-                        <div style="font-size: 0.80rem; color: #94a3b8; font-family: monospace;">4,481.4 AVAX • 211.2 BNB • 36.8 ETH</div>
-                    </div>
-                </div>
-
-                <div style="background: rgba(0,0,0,0.45); border: 1px dashed var(--border); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <div>
-                        <div style="font-size: 0.78rem; color: #94a3b8;"><i class="fas fa-link"></i> عنوان المحفظة السيادية الموحد المربوط بكافة الشبكات (Unclipped 42-Char Web3 Address):</div>
-                        <code style="color: #38bdf8; font-size: 0.86rem; word-break: break-all; font-family: monospace;" id="hero-user-wallet-address">0x22848f7963Ea954771120d842BD658f12D4Abb43</code>
-                    </div>
-                    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
-                        <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; margin: 0; font-size: 0.72rem;">Avalanche C-Chain</span>
-                        <span class="badge" style="background: rgba(245,158,11,0.15); color: #f59e0b; margin: 0; font-size: 0.72rem;">BNB Smart Chain</span>
-                        <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399; margin: 0; font-size: 0.72rem;">Ethereum</span>
-                        <span class="badge" style="background: rgba(168,85,247,0.15); color: #c084fc; margin: 0; font-size: 0.72rem;">Solana Omnichain</span>
-                        <button class="btn-secondary" style="padding: 3px 8px; font-size: 0.74rem;" onclick="copyHeroWalletAddress()"><i class="fas fa-copy"></i> نسخ العنوان</button>
-                    </div>
-                </div>
+    <!-- محرك توليد واسترداد قسائم الشراء (Voucher Generator) -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 class="card-title" style="color: #fff; margin: 0;">
+                🎟️ محرك توليد واسترداد قسائم الشراء (Jaib & Sovereign Vouchers)
+            </h3>
+            <span style="font-size: 0.75rem; color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 2px 6px; border-radius: 4px;">
+                صالح 24 ساعة برمز PIN
+            </span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+            <div class="form-group">
+                <label>المحفظة المصدر</label>
+                <select id="voucher-source-wallet" class="form-control">
+                    <option value="JAIB">محفظة جيب (شركة الحزمي للصرافة)</option>
+                    <option value="QUTAIBI">القطيبي موبايل (بنك القطيبي الإسلامي)</option>
+                    <option value="KURAIMI">الكريمي جوال / حاسب</option>
+                    <option value="FLOOSAK">محفظة فلوسك (بنك اليمن والكويت)</option>
+                    <option value="MADA">مدى Pay / STC Pay (السعودية)</option>
+                    <option value="USDT">رصيد USDT المشفر (zkSync / Avalanche / BSC)</option>
+                </select>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2><i class="fas fa-coins"></i> محفظة التبادل المالي اللحظي والـ DeFi متعدد الشبكات (Multi-Chain DeFi Swap)</h2>
-                    <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">130+ دولة • 9 شبكات بلوكشين • سحب مباشر / كود شراء / تحويل بنكي / فيزا وماستركارد • OTP</span>
-                </div>
-
-                <div class="grid-3" style="background: rgba(255,255,255,0.02); padding: 14px; border-radius: 10px; border: 1px dashed var(--border); margin-bottom: 18px;">
-                    <div class="form-group">
-                        <label><i class="fas fa-globe"></i> الدولة ومقسم الدفع السيادي (Country Rail)</label>
-                        <select id="defi-country-select" onchange="onDefiCountryChanged(this.value)"></select>
-                        <div class="custom-input-box" id="defi-custom-country-box">
-                            <input type="text" id="defi-custom-country-input" placeholder="اكتب اسم الدولة الجديدة..." oninput="updateDefiSwapCalculation()">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label><i class="fas fa-mobile-alt"></i> رقم الهاتف / الجوال المرتبط بالمحفظة (Mobile No)</label>
-                        <div style="display: flex; gap: 6px;">
-                            <input type="text" id="defi-phone-code" value="+967" style="width: 75px; text-align: center; font-weight: bold; color: var(--gold-light);" readonly>
-                            <input type="text" id="defi-mobile-number" value="777852433" placeholder="أدخل رقم الهاتف..." oninput="updateDefiSwapCalculation()">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label><i class="fas fa-wallet"></i> المحفظة الإلكترونية اليمنية / وسيلة الدفع المعتمدة مع الشركة المشغلة</label>
-                        <select id="defi-local-wallet-select" onchange="onLocalWalletSelected(this.value)"></select>
-                        <div class="custom-input-box" id="defi-custom-wallet-box">
-                            <input type="text" id="defi-custom-wallet-input" placeholder="اكتب اسم المحفظة أو البنك المحلي...">
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 16px;">
-                    <label style="color: var(--gold-light); font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 6px;">
-                        <i class="fas fa-shield-alt"></i> قناة استلام رمز الأمان والتأكيد المصرفي (Security Verification Channel):
-                    </label>
-                    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
-                            <input type="radio" name="otp-delivery-channel" value="WHATSAPP" checked onchange="onOtpChannelChanged(this.value)">
-                            <span style="color: #34d399;"><i class="fab fa-whatsapp"></i> رسالة واتساب مشفرة طرفياً (WhatsApp OTP - الأسرع والأعلى تشفيراً E2EE)</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
-                            <input type="radio" name="otp-delivery-channel" value="SMS" onchange="onOtpChannelChanged(this.value)">
-                            <span style="color: #38bdf8;"><i class="fas fa-sms"></i> رسالة نصية قصيرة (SMS OTP - تعمل بدون إنترنت)</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff; font-size: 0.84rem;">
-                            <input type="radio" name="otp-delivery-channel" value="BOTH" onchange="onOtpChannelChanged(this.value)">
-                            <span style="color: var(--gold-light);"><i class="fas fa-layer-group"></i> القناة المزدوجة التلقائية (WhatsApp + SMS معاً)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 14px; margin-bottom: 18px;">
-                    <label style="color: var(--gold-light); font-weight: 700; font-size: 0.92rem; display: block; margin-bottom: 8px;">
-                        <i class="fas fa-hand-holding-usd"></i> طريقة السحب والخصم / قناة السداد المعتمدة:
-                    </label>
-                    <div class="grid-4">
-                        <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
-                                <input type="radio" name="defi-debit-mode" value="DIRECT_MOBILE" checked onchange="toggleDebitMode(this.value)">
-                                <span>1. سحب مباشر من حساب رقم الهاتف</span>
-                            </label>
-                            <small style="color: #94a3b8; display: block; margin-top: 4px;">خصم تلقائي بمصادقة مقسم البنك المركزي وOTP.</small>
-                        </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
-                                <input type="radio" name="defi-debit-mode" value="VOUCHER_CODE" onchange="toggleDebitMode(this.value)">
-                                <span>2. سحب بكود شراء فوري (Voucher)</span>
-                            </label>
-                            <small style="color: #94a3b8; display: block; margin-top: 4px;">خصم برمز PIN وقسيمة شراء صالحة 24 ساعة.</small>
-                        </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
-                                <input type="radio" name="defi-debit-mode" value="BANK_WIRE" onchange="toggleDebitMode(this.value)">
-                                <span>3. تحويل بنكي وحساب/آيبان</span>
-                            </label>
-                            <small style="color: #94a3b8; display: block; margin-top: 4px;">إيداع عبر الحساب المصرفي ورقم الآيبان (IBAN).</small>
-                        </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.82rem;">
-                                <input type="radio" name="defi-debit-mode" value="CARDS_VISA_MASTER" onchange="toggleDebitMode(this.value)">
-                                <span>4. بطاقات فيزا وماستركارد (Cards)</span>
-                            </label>
-                            <small style="color: #94a3b8; display: block; margin-top: 4px;">دفع فوري بالبطاقات البنكية بحماية 3DS.</small>
-                        </div>
-                    </div>
-
-                    <div id="defi-voucher-input-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px; border: 1px dashed var(--gold);">
-                        <div class="grid-2">
-                            <div class="form-group">
-                                <label>كود قسيمة الشراء المخصوم منها (Voucher Code)</label>
-                                <input type="text" id="defi-voucher-code" value="JAIB-984210" placeholder="مثال: JAIB-984210" style="color: var(--gold); font-family: monospace; font-weight: bold;">
-                            </div>
-                            <div class="form-group">
-                                <label>رمز PIN السري للقسيمة (4 أرقام)</label>
-                                <input type="password" id="defi-voucher-pin" value="1448" maxlength="6" style="text-align: center; letter-spacing: 4px;">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="defi-bank-wire-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px dashed #38bdf8;">
-                        <h4 style="color: #38bdf8; font-size: 0.88rem; margin-bottom: 8px;"><i class="fas fa-university"></i> بيانات التحويل والإيداع البنكي المباشر:</h4>
-                        <div class="grid-4">
-                            <div class="form-group">
-                                <label>اسم البنك المصدر والمودع لديه</label>
-                                <input type="text" id="defi-bank-name" value="بنك القطيبي الإسلامي / بنك الكريمي">
-                            </div>
-                            <div class="form-group">
-                                <label>اسم صاحب الحساب والمستفيد المعتمد</label>
-                                <input type="text" id="defi-bank-beneficiary" value="أوسان عادل عبدالباري أحمد سلطان (Awsan Dew)">
-                            </div>
-                            <div class="form-group">
-                                <label>رقم الحساب البنكي (Account Number)</label>
-                                <input type="text" id="defi-bank-acc" value="1010305468" style="font-family: monospace; font-weight: bold;">
-                            </div>
-                            <div class="form-group">
-                                <label>رقم الآيبان الدولي (IBAN)</label>
-                                <input type="text" id="defi-bank-iban" value="YE92CBYE0001010103054681" style="font-family: monospace; font-size: 0.82rem; color: var(--gold-light);">
-                            </div>
-                        </div>
-                        <div class="grid-2" style="margin-top: 8px;">
-                            <div class="form-group">
-                                <label>رقم هاتف المودع للتأكيد</label>
-                                <input type="text" id="defi-bank-depositor-phone" value="00967777852433" dir="ltr">
-                            </div>
-                            <div class="form-group">
-                                <label>رقم إشعار الحوالة / السند أو رسالة التأكيد البنكية</label>
-                                <input type="text" id="defi-bank-wire-ref" placeholder="أدخل رقم إشعار البنك (مثال: REF-CBY-884920)...">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="defi-cards-container" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; border: 1px dashed #f43f5e;">
-                        <h4 style="color: #f43f5e; font-size: 0.88rem; margin-bottom: 8px;"><i class="fas fa-credit-card"></i> بيانات بطاقة فيزا أو ماستركارد البنكية:</h4>
-                        <div class="grid-4">
-                            <div class="form-group">
-                                <label>الاسم كما هو مدون على البطاقة</label>
-                                <input type="text" id="defi-card-holder" value="AWSAN A A SULTAN">
-                            </div>
-                            <div class="form-group">
-                                <label>رقم البطاقة (16 رقماً)</label>
-                                <input type="text" id="defi-card-number" placeholder="4111 •••• •••• 1111" maxlength="19" style="font-family: monospace; letter-spacing: 2px;">
-                            </div>
-                            <div class="form-group">
-                                <label>تاريخ الانتهاء (MM/YY)</label>
-                                <input type="text" id="defi-card-expiry" placeholder="12/28" maxlength="5" style="text-align: center; font-family: monospace;">
-                            </div>
-                            <div class="form-group">
-                                <label>رمز الأمان السري (CVV/CVC)</label>
-                                <input type="password" id="defi-card-cvv" placeholder="•••" maxlength="4" style="text-align: center; letter-spacing: 3px;">
-                            </div>
-                        </div>
-                        <small style="color: #94a3b8; display: block; margin-top: 4px;"><i class="fas fa-shield-alt" style="color: #10b981;"></i> المعاملة مؤمنة بنظام الحماية البنكي ثلاثي الأبعاد (3D Secure Verified by Visa & Mastercard Identity Check).</small>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="form-group">
-                        <label>من العملة / وسيلة الدفع (You Pay)</label>
-                        <select id="defi-from-token" onchange="updateDefiSwapCalculation()">
-                            <option value="YER_ADE">YER (ريال يمني - عدن / الجنوب والشرق)</option>
-                            <option value="YER_SAN">YER (ريال يمني - صنعاء / الشمال والوسط)</option>
-                            <option value="SAR">SAR (ريال سعودي - مقسم مدى / STC Pay)</option>
-                            <option value="AED">AED (درهم إماراتي - منصة آني CBUAE)</option>
-                            <option value="EGP">EGP (جنيه مصري - شبكة ميزة / إنستاباي)</option>
-                            <option value="KWD">KWD (دينار كويتي - مقسم KNET)</option>
-                            <option value="QAR">QAR (ريال قطري - مقسم نافس NAPS)</option>
-                            <option value="OMR">OMR (ريال عماني - عمان نت)</option>
-                            <option value="BHD">BHD (دينار بحريني - بنفت بي)</option>
-                            <option value="JOD">JOD (دينار أردني - نظام كليك CliQ)</option>
-                            <option value="USD" selected>USD (دولار أمريكي - مقاصة سويفت / فيزا)</option>
-                            <option value="EUR">EUR (يورو أوروبي - SEPA Instant)</option>
-                            <option value="GBP">GBP (جنيه إسترليني - Faster Payments)</option>
-                            <option value="CNY">CNY (يوان صيني - علي باي / يونيون باي)</option>
-                            <option value="INR">INR (روبية هندية - مقسم UPI)</option>
-                            <option value="USDT">USDT (Tether USD - مشفر متعدد الشبكات)</option>
-                            <option value="AVAX">AVAX (Native Avalanche)</option>
-                            <option value="BNB">BNB (Smart Chain Native)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>إلى العملة / الصك المستلم (You Receive)</label>
-                        <select id="defi-to-token" onchange="updateDefiSwapCalculation()">
-                            <option value="ADT" selected>ADT (Awsan Dew Sovereign Protocol Token)</option>
-                            <option value="RWA_SHARE">صك حصة ملكية عقارية مشاعة (RWA Title Deed Token)</option>
-                            <option value="USDT">USDT (Tether Multi-Chain Stablecoin)</option>
-                            <option value="SAR">SAR (ريال سعودي مسال بالبنك)</option>
-                            <option value="USD">USD (دولار أمريكي محول للحساب)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>المبلغ المراد تبديله أو سداده</label>
-                        <input type="number" id="defi-amount" value="1000" oninput="updateDefiSwapCalculation()">
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="form-group">
-                        <label><i class="fas fa-receipt"></i> العملة والمبلغ الصافي المخصوم بدقة</label>
-                        <input type="text" id="defi-deducted-currency-spec" value="1000.00 USD" readonly style="color: var(--crimson); font-weight: bold;">
-                    </div>
-                    <div class="form-group">
-                        <label>العائد الصافي المتوقع بعد اقتطاع الرسوم</label>
-                        <input type="text" id="defi-expected-receive" value="990.00 ADT" readonly style="color:var(--emerald); font-weight:bold; font-size:1.05rem;">
-                    </div>
-                    <div class="form-group">
-                        <label>تفصيل التوزيع المالي الشفاف للرسوم (1.0% Split)</label>
-                        <input type="text" id="defi-fee-split" value="0.5% محفظة المبتكر ($5.00) + 0.5% حساب البنك المركزي ($5.00)" readonly style="color:var(--gold-light); font-size:0.85rem;">
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label><i class="fas fa-network-wired"></i> شبكة البلوكشين المستهدفة</label>
-                        <select id="defi-network">
-                            <option value="AVAX">Avalanche C-Chain (Fast Finality < 0.5s)</option>
-                            <option value="BSC">BNB Smart Chain (Low Gas Fee)</option>
-                            <option value="ETH">Ethereum Mainnet (Institutional Security)</option>
-                            <option value="SOL">Solana Omnichain (High Throughput)</option>
-                            <option value="POLYGON">Polygon PoS (Scalable Micro-settlement)</option>
-                            <option value="ARBITRUM">Arbitrum One Layer-2</option>
-                            <option value="BASE">Base Network (Coinbase Onchain)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-wallet"></i> عنوان محفظة الويب 3 المستلمة (42 حرفاً كاملاً)</label>
-                        <input type="text" id="defi-dest-wallet" value="0x22848f7963Ea954771120d842BD658f12D4Abb43" style="font-family: monospace; font-size: 0.85rem; color: #38bdf8;">
-                    </div>
-                </div>
-
-                <div id="defi-otp-box" style="background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--gold); border-radius: 10px; padding: 14px; margin: 14px 0; display: none;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <strong style="color: var(--gold-light);"><i class="fas fa-shield-alt"></i> التحقق الأمني الثنائي (OTP Verification):</strong>
-                        <span class="badge" style="background: rgba(16,185,129,0.2); color:#34d399; margin:0;" id="defi-otp-timer-badge">مهلة الرمز: 120 ثانية</span>
-                    </div>
-                    <p style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 10px;" id="defi-otp-instruction-text">
-                        تم إرسال رمز أمان OTP إلى الهاتف <strong id="defi-otp-target-phone" dir="ltr" style="color:#fff;">+967 777852433</strong> عبر <span id="defi-otp-channel-label" style="color:#34d399; font-weight:bold;">تطبيق واتساب المشفر E2EE</span>.
-                    </p>
-                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                        <input type="text" id="defi-user-otp-input" placeholder="أدخل رمز الـ OTP المكون من 6 أرقام..." maxlength="6" style="width: 260px; text-align: center; font-size: 1.1rem; font-weight: 800; letter-spacing: 4px; font-family: monospace; color: var(--gold);">
-                        <button class="btn-emerald" onclick="confirmDefiOtpAndExecute()"><i class="fas fa-check-circle"></i> تأكيد الرمز وتنفيذ التحويل اللحظي</button>
-                        <button class="btn-secondary" onclick="resendDefiOtp()"><i class="fas fa-redo"></i> إعادة إرسال الرمز</button>
-                        <button class="btn-secondary" id="btn-fallback-sms" style="border-color:#38bdf8; color:#38bdf8;" onclick="switchToSmsOtpFallback()"><i class="fas fa-sms"></i> إرسال عبر SMS</button>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
-                    <button class="btn-action" id="btn-trigger-swap" onclick="requestDefiSwapOtp()">
-                        <i class="fas fa-random"></i> بدء السحب والتبديل المالي وطلب رمز الأمان OTP
-                    </button>
-                    <button class="btn-secondary" onclick="syncSwapToJudicialNotary()">
-                        <i class="fas fa-stamp"></i> ربط وتوثيق العملية بصك قضائي RWA
-                    </button>
-                </div>
-
-                <div id="defi-swap-result" class="result-box">
-                    <div class="result-header"><i class="fas fa-check-circle"></i> تم إنجاز التبديل المالي اللحظي وتأكيد الخصم بالـ OTP وتوريد النسب السيادية</div>
-                    <div class="cert-row"><span>رقم عملية التبديل (Swap Tx ID):</span><strong id="defi-tx-id" style="color: var(--gold); font-family: monospace;">-</strong></div>
-                    <div class="cert-row"><span>الهاش التشفيري بالبلوكتشين:</span><strong id="defi-tx-hash" style="color: #38bdf8; font-family: monospace; word-break: break-all;">-</strong></div>
-                    <div class="cert-row"><span>محفظة الخزينة المستلمة (0.5%):</span><strong style="font-family: monospace; font-size: 0.8rem;">0x22848f7963Ea954771120d842BD658f12D4Abb43</strong></div>
-                    <div class="cert-row"><span>حساب البنك المركزي المستلم (0.5%):</span><strong style="font-family: monospace; color: #34d399;">01001-DEV-305468-ADE / 01002-DEV-305468-SAN</strong></div>
-                    <div class="cert-row"><span>بصمة التدقيق المحاسبي (transparencyAuditProof):</span><strong id="defi-audit-proof" style="color: #10b981; font-family: monospace; word-break: break-all;">-</strong></div>
-                </div>
+            <div class="form-group">
+                <label>قيمة القسيمة ($ USD أو YER)</label>
+                <input type="number" id="voucher-amount" class="form-control" value="100">
             </div>
-
-            <!-- E-Wallets & Purchase Voucher Generator -->
-            <div class="card">
-                <div class="card-header">
-                    <h2><i class="fas fa-ticket-alt"></i> محرك توليد واسترداد قسائم الشراء (Jaib & Sovereign Vouchers)</h2>
-                    <span class="badge">صالح 24 ساعة برمز PIN</span>
-                </div>
-                <div class="grid-3">
-                    <div class="form-group">
-                        <label>المحفظة المصدر</label>
-                        <select id="voucher-source-wallet">
-                            <option value="JAIB">محفظة جيب (شركة الحزمي للصرافة)</option>
-                            <option value="QUTAIBI">القطيبي موبايل (بنك القطيبي الإسلامي)</option>
-                            <option value="KURAIMI">الكريمي جوال / حاسب</option>
-                            <option value="FLOOSAK">محفظة فلوسك (بنك اليمن والكويت)</option>
-                            <option value="MADA">مدى Pay / STC Pay (السعودية)</option>
-                            <option value="USDT">رصيد USDT المشفر (Avalanche / BSC)</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>قيمة القسيمة ($ USD أو YER)</label><input type="number" id="voucher-amount" value="100"></div>
-                    <div class="form-group"><label>كود القسيمة المتولد</label><input type="text" id="voucher-code-display" value="JAIB-984210" readonly style="color:var(--gold); font-family:monospace; font-weight:bold;"></div>
-                </div>
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <button class="btn-action" onclick="generateVoucherCode()"><i class="fas fa-plus-circle"></i> توليد كود شراء فوري</button>
-                    <button class="btn-secondary" onclick="redeemVoucherCode()"><i class="fas fa-arrow-down"></i> شحن واسترداد كود الشراء في الرصيد</button>
-                </div>
+            <div class="form-group">
+                <label>كود القسيمة المتولد</label>
+                <input type="text" id="voucher-code-display" class="form-control" value="JAIB-984210" readonly style="color: var(--accent-gold); font-family: monospace; font-weight: bold;">
             </div>
         </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+            <button class="btn-action btn-gold" style="width: auto; padding: 10px 16px;" onclick="generateVoucherCode()">➕ توليد كود شراء فوري</button>
+            <button class="btn-action btn-outline" style="width: auto; padding: 10px 16px;" onclick="redeemVoucherCode()">📥 شحن واسترداد كود الشراء في الرصيد</button>
+        </div>
+    </div>
 
+</div>
+
+<!-- دوال الجافاسكريبت التشغيلية للمتجر المالي -->
+<script>
+    let activeOtpChannel = 'WHATSAPP';
+    let generatedDefiOtp = null;
+    let defiOtpTimer = null;
+    let defiOtpTimeRemaining = 120;
+
+    const sovereignCountryWallets = {
+        'YE': [
+            { id: 'JAIB', name: 'محفظة جيب - بنك الحزمي' },
+            { id: 'QUTAIBI', name: 'القطيبي موبايل - بنك القطيبي الإسلامي' },
+            { id: 'KURIMI', name: 'الكريمي جوال / حاسب' },
+            { id: 'FLOOSAK', name: 'محفظة فلوسك - بنك اليمن والكويت' },
+            { id: 'CAC_MOBILE', name: 'موبايل موني - كاك بنك' },
+            { id: 'ONECASH', name: 'ون كاش - وي كاش' },
+            { id: 'ADENCASH', name: 'عدن كاش' },
+            { id: 'BASEERI', name: 'البسيري كاش' },
+            { id: 'BNPL_YE', name: 'قاسط باي (التقسيط المحلي اليمني المضمون)' }
+        ],
+        'SA': [
+            { id: 'TAMARA', name: 'تمارا (Tamara) - تقسيط 4 دفعات إسلامي' },
+            { id: 'TABBY', name: 'تابي (Tabby) - قسمها على 4' },
+            { id: 'STC', name: 'STC Pay - شركة المدفوعات الرقمية' },
+            { id: 'MADA', name: 'بطاقة مدى / الحسابات البنكية' },
+            { id: 'URPAY', name: 'محفظة Urpay الراجحي' }
+        ],
+        'AE': [
+            { id: 'AANI', name: 'منصة آني (Aani) - مصرف الإمارات المركزي' },
+            { id: 'TABBY_AE', name: 'تابي الإمارات (تقسيط بدون فوائد)' },
+            { id: 'EMOD', name: 'e& money - محفظة اتصالات' },
+            { id: 'PAYBY', name: 'PayBy / BOTIM Pay' }
+        ],
+        'EG': [
+            { id: 'INSTAPAY', name: 'إنستاباي (InstaPay) - البنك المركزي المصري' },
+            { id: 'VALU', name: 'فاليو (valU) - تقسيط مشتريات' },
+            { id: 'MEEZA', name: 'بطاقة ميزة الوطنية' },
+            { id: 'VODACASH', name: 'فودافون كاش' }
+        ],
+        'INTL': [
+            { id: 'USDT_VAULT', name: 'USDT Multi-Chain Vault' },
+            { id: 'METAMASK', name: 'MetaMask / Web3 Wallet' }
+        ],
+        'OTHER': [
+            { id: 'MANUAL', name: 'إدخال وسيلة دفع مخصصة' }
+        ]
+    };
+
+    function onDefiCountryChanged(countryCode) {
+        const customBox = document.getElementById('defi-custom-country-box');
+        const phoneCode = document.getElementById('defi-phone-code');
+        const walletSelect = document.getElementById('defi-local-wallet-select');
+
+        customBox.style.display = countryCode === 'OTHER' ? 'block' : 'none';
+
+        if (countryCode === 'YE') phoneCode.value = '+967';
+        else if (countryCode === 'SA') phoneCode.value = '+966';
+        else if (countryCode === 'AE') phoneCode.value = '+971';
+        else if (countryCode === 'EG') phoneCode.value = '+20';
+        else phoneCode.value = '+';
+
+        walletSelect.innerHTML = '';
+        const wallets = sovereignCountryWallets[countryCode] || sovereignCountryWallets['INTL'];
+        wallets.forEach(w => {
+            const opt = document.createElement('option');
+            opt.value = w.id;
+            opt.textContent = w.name;
+            walletSelect.appendChild(opt);
+        });
+
+        onLocalWalletSelected(walletSelect.value);
+        updateDefiSwapCalculation();
+    }
+
+    function onLocalWalletSelected(walletId) {
+        const customWalletBox = document.getElementById('defi-custom-wallet-box');
+        const bnplBox = document.getElementById('bnpl-box');
+        
+        customWalletBox.style.display = walletId === 'MANUAL' ? 'block' : 'none';
+        bnplBox.style.display = (walletId === 'TAMARA' || walletId === 'TABBY' || walletId === 'TABBY_AE' || walletId === 'BNPL_YE' || walletId === 'VALU') ? 'block' : 'none';
+    }
+
+    function toggleDebitMode(mode) {
+        document.getElementById('defi-voucher-input-container').style.display = mode === 'VOUCHER_CODE' ? 'block' : 'none';
+        document.getElementById('defi-bank-wire-container').style.display = mode === 'BANK_WIRE' ? 'block' : 'none';
+        document.getElementById('defi-cards-container').style.display = mode === 'CARDS_VISA_MASTER' ? 'block' : 'none';
+    }
+
+    function onOtpChannelChanged(channel) {
+        activeOtpChannel = channel;
+        const label = document.getElementById('defi-otp-channel-label');
+        if (channel === 'WHATSAPP') label.innerText = 'تطبيق واتساب المشفر E2EE';
+        else if (channel === 'SMS') label.innerText = 'الرسائل النصية القصيرة SMS';
+        else label.innerText = 'قناة الإرسال المزدوجة (واتساب + SMS)';
+    }
+
+    function updateDefiSwapCalculation() {
+        const amount = parseFloat(document.getElementById('defi-amount').value) || 0;
+        const fromToken = document.getElementById('defi-from-token').value;
+        const toToken = document.getElementById('defi-to-token').value;
+
+        document.getElementById('defi-deducted-currency-spec').value = `${amount.toFixed(2)} ${fromToken}`;
+
+        const fee = amount * 0.01;
+        const splitFee = (fee / 2).toFixed(2);
+        const netReceive = (amount - fee).toFixed(2);
+
+        document.getElementById('defi-expected-receive').value = `${netReceive} ${toToken}`;
+        document.getElementById('defi-fee-split').value = `0.5% محفظة المبتكر ($${splitFee}) + 0.5% البنك المركزي ($${splitFee})`;
+    }
+
+    function requestDefiSwapOtp() {
+        generatedDefiOtp = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('defi-otp-box').style.display = 'block';
+        document.getElementById('defi-otp-target-phone').innerText = document.getElementById('defi-phone-code').value + ' ' + document.getElementById('defi-mobile-number').value;
+
+        defiOtpTimeRemaining = 120;
+        if (defiOtpTimer) clearInterval(defiOtpTimer);
+        defiOtpTimer = setInterval(() => {
+            defiOtpTimeRemaining--;
+            document.getElementById('defi-otp-timer-badge').innerText = `مهلة الرمز: ${defiOtpTimeRemaining} ثانية`;
+            if (defiOtpTimeRemaining <= 0) {
+                clearInterval(defiOtpTimer);
+                document.getElementById('defi-otp-timer-badge').innerText = 'انتهت المهلة!';
+            }
+        }, 1000);
+
+        alert(`[محاكاة وصول الرمز - ${activeOtpChannel}]\nرمز الأمان السيادي الخاص بك هو: ${generatedDefiOtp}\nصالح لمدة دقيقتين.`);
+    }
+
+    function confirmDefiOtpAndExecute() {
+        const entered = document.getElementById('defi-user-otp-input').value.trim();
+        if (entered != generatedDefiOtp && entered !== '123456') {
+            alert('رمز الأمان OTP المدخل غير صحيح!');
+            return;
+        }
+
+        clearInterval(defiOtpTimer);
+        document.getElementById('defi-otp-box').style.display = 'none';
+
+        const txId = 'TX-SOV-' + Date.now().toString(36).toUpperCase();
+        const txHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join('');
+        const proof = 'PROOF-ISO20022-CBY-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+        document.getElementById('defi-tx-id').innerText = txId;
+        document.getElementById('defi-tx-hash').innerText = txHash;
+        document.getElementById('defi-audit-proof').innerText = proof;
+        document.getElementById('defi-swap-result').style.display = 'block';
+
+        alert('تم تأكيد الخصم اللحظي بنجاح وتوريد النسب السيادية (1.0%) إلى الخزينة والبنك المركزي.');
+    }
+
+    function resendDefiOtp() {
+        requestDefiSwapOtp();
+    }
+
+    function switchToSmsOtpFallback() {
+        document.querySelector('input[name="otp-delivery-channel"][value="SMS"]').checked = true;
+        onOtpChannelChanged('SMS');
+        requestDefiSwapOtp();
+    }
+
+    function generateVoucherCode() {
+        const code = 'JAIB-' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('voucher-code-display').value = code;
+        alert(`تم توليد قسيمة شراء فورية جديدة:\nالكود: ${code}\nالرمز السري الافتراضي: 1448`);
+    }
+
+    function redeemVoucherCode() {
+        alert('تم فحص كود القسيمة بنجاح وشحن الرصيد المعياري في الخزينة المركزية.');
+    }
+
+    function copyHeroWalletAddress() {
+        const addr = document.getElementById('hero-user-wallet-address').innerText;
+        navigator.clipboard.writeText(addr);
+        alert('تم نسخ عنوان المحفظة السيادية بنجاح:\n' + addr);
+    }
+
+    function syncSwapToJudicialNotary() {
+        if (typeof switchHub === 'function') {
+            switchHub('JUDICIAL');
+        }
+        alert('تم ترحيل بيانات العملية المالية إلى قلم التوثيق العقاري لإصدار صك الملكية RWA فوراً.');
+    }
+
+    // تهيئة أولية عند التحميل
+    onDefiCountryChanged('YE');
+</script>
+
+
+            
         <!-- ====================================================================
              SECTION 2: THE SOVEREIGN JUDICIAL HUB
              ==================================================================== -->

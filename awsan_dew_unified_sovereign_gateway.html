@@ -597,6 +597,108 @@
                 </div>
             </div>
 
+
+
+    <!-- 1. المستودع المالي والـ DeFi -->
+    <div id="hub-financial" class="hub-content active">
+        <!-- الخزينة المركزية الموحدة للمستخدم -->
+        <div class="card" style="border-color: var(--accent-gold);">
+            <div style="font-size: 0.8rem; color: var(--accent-emerald);">🛡️ الخزينة المركزية الموحدة للمستخدم</div>
+            <h2 style="margin: 8px 0; color: var(--accent-gold); font-size: 1.8rem;">\$125,480.00 USD</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+                <div>ريال عدن: 200,768,000 YER</div>
+                <div>ريال صنعاء: 66,504,400 YER</div>
+                <div>ريال سعودي: 470,550 SAR</div>
+                <div>درهم إماراتي: 460,760 AED</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                <button class="btn-action btn-emerald" style="padding: 8px 4px; font-size: 0.8rem;">↗️ إرسال</button>
+                <button class="btn-action btn-blue" style="padding: 8px 4px; font-size: 0.8rem;">↙️ استلام</button>
+                <button class="btn-action btn-gold" style="padding: 8px 4px; font-size: 0.8rem;" onclick="scrollToSwap()">🔄 Swap</button>
+                <button class="btn-action btn-outline" style="padding: 8px 4px; font-size: 0.8rem;">🪪 KYC</button>
+            </div>
+        </div>
+
+        <!-- محرك الـ Multi-Chain Swap وقسائم الشراء -->
+        <div id="swap-section" class="card">
+            <h3 class="card-title" style="color: var(--accent-gold);">🔄 محفظة التبادل اللحظي (Multi-Chain DeFi Swap)</h3>
+            
+            <div class="form-group">
+                <label>اختر الدولة والولاية القضائية المالية:</label>
+                <select id="country-select" class="form-control" onchange="handleCountryChange()">
+                    <option value="YE">اليمن (Yemen) - مقاسم البنك المركزي</option>
+                    <option value="SA">المملكة العربية السعودية (KSA) - مدى & سداد</option>
+                    <option value="AE">الإمارات العربية المتحدة (UAE) - مقسم آني</option>
+                    <option value="EG">مصر (Egypt) - شبكة ميزة & إنستاباي</option>
+                    <option value="INTL">دولي / شبكات الويب 3 المشفرة</option>
+                    <option value="OTHER">أخرى (إدخال دولة غير مدرجة يدوياً)</option>
+                </select>
+            </div>
+
+            <div id="other-country-box" class="form-group" style="display:none;">
+                <label>اسم الدولة المدخلة يدوياً:</label>
+                <input type="text" class="form-control" placeholder="أدخل اسم الدولة...">
+            </div>
+
+            <div class="form-group">
+                <label>وسيلة الدفع والمحفظة الرقمية:</label>
+                <select id="payment-rail" class="form-control" onchange="handlePaymentRailChange()"></select>
+            </div>
+
+            <!-- خيار التقسيط الإسلامي BNPL (تمارا / تابي) -->
+            <div id="bnpl-box" style="display:none; margin-bottom: 12px; background: rgba(245, 158, 11, 0.1); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 12px;">
+                <div style="font-weight: bold; color: var(--accent-gold); margin-bottom: 6px;">🛍️ خيار التقسيط الإسلامي المعتمد (تمارا - Tamara):</div>
+                <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 8px;">قسّم فاتورتك على 4 دفعات شهرية بدون فوائد أو رسوم خفية.</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <input type="text" class="form-control" placeholder="الهوية الوطنية / الإقامة">
+                    <input type="tel" class="form-control" placeholder="رقم الجوال بنفاذ">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;" class="form-group">
+                <div>
+                    <label>المبلغ المراد تبديله:</label>
+                    <input type="number" id="swap-amount" class="form-control" value="1000">
+                </div>
+                <div>
+                    <label>عملة القسيمة / التحويل:</label>
+                    <select id="swap-currency" class="form-control">
+                        <option value="USD">دولار أمريكي (USD)</option>
+                        <option value="YER_ADE">ريال يمني - عدن (YER)</option>
+                        <option value="YER_SAN">ريال يمني - صنعاء (YER)</option>
+                        <option value="SAR">ريال سعودي (SAR)</option>
+                        <option value="AED">درهم إماراتي (AED)</option>
+                        <option value="USDT">تيذر رقمي (USDT)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>نوع الشبكة (Blockchain / Clearing Network):</label>
+                <select id="swap-network" class="form-control">
+                    <option value="ZK">zkSync Era AWSAN (L2 Rollup)</option>
+                    <option value="AVAX">Avalanche C-Chain</option>
+                    <option value="BSC">BNB Smart Chain</option>
+                    <option value="ETH">Ethereum Mainnet</option>
+                    <option value="SOL">Solana Network</option>
+                    <option value="CBY">مقسم البنك المركزي اليمني الوطني</option>
+                </select>
+            </div>
+
+            <div style="background: #090d16; border: 1px dashed #334155; border-radius: 8px; padding: 10px; font-size: 0.8rem; margin-bottom: 12px;">
+                <div style="color: var(--accent-emerald); font-weight: bold;">توزيع الاستقطاع السيادي المعتمد (1.0% Royalty Split):</div>
+                <div style="color: var(--text-muted); margin-top: 4px;">• 0.5% لمحفظة المبتكر الرقمية: 0x2284...4Abb43</div>
+                <div style="color: var(--text-muted);">• 0.5% للحساب البنكي الرسمي للمبتكر بالبنك المركزي</div>
+            </div>
+
+            <button class="btn-action btn-gold" onclick="executeSwapProcess()">تأكيد عملية التبديل وطلب رمز الأمان (OTP)</button>
+        </div>
+    </div>
+
+
+
+
             <!-- Comprehensive Omnichain Balance Hero Section -->
             <div class="card" style="background: linear-gradient(135deg, rgba(14,22,40,0.96) 0%, rgba(7,12,24,0.98) 100%); border: 2px solid var(--gold); margin-bottom: 22px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">

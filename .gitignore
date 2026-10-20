@@ -1,26 +1,3 @@
-# Dependencies & Logs
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment & Secrets
-.env
-.env.local
-.env.*.local
-*.pem
-*.key
-
-# Editor & OS Artifacts
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# Vercel / Build Output
-.vercel/
-dist/
-out/
 
 # Environment Secrets & Private Credentials
 .env

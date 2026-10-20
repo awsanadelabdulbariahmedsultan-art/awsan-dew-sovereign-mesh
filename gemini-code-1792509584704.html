@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة أوسان دو القضائية والعدلية الذكية | Awsan Dew Sovereign Judicial Gateway</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ربط ملفات الأنماط المنفصلة -->
+    <link rel="stylesheet" href="css/sovereign-core.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/print-engine.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="top-navbar">
+        <div class="portal-brand">
+            <i class="fas fa-balance-scale"></i>
+            <span>منظومة القضاء السيادية الموحدة • Awsan Dew Mesh v3.0.0</span>
+        </div>
+        <div class="top-nav-actions">
+            <button type="button" class="hub-switch-btn" id="btn-hub-financial" onclick="setMasterHub('FINANCIAL')">
+                <i class="fas fa-coins"></i> المتجر المالي والـ DeFi
+            </button>
+            <button type="button" class="hub-switch-btn active" id="btn-hub-judicial" onclick="setMasterHub('JUDICIAL')">
+                <i class="fas fa-gavel"></i> البوابة القضائية والعدلية
+            </button>
+            <button type="button" class="hub-switch-btn" id="btn-hub-reports" onclick="setMasterHub('REPORTS')">
+                <i class="fas fa-chart-pie"></i> مركز التقارير السيادية
+            </button>
+            <button type="button" class="staff-session-btn" onclick="openLoginModal()">
+                <i class="fas fa-user-check"></i> <span id="active-session-name">فضيلة القاضي / عبدالحكيم النجاشي</span> (<span id="active-session-id">EMP-003</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- الترويسة السيادية -->
+    <header class="header">
+        <div class="badge"><i class="fas fa-landmark"></i> المعمارية العدلية السيادية الموحدة v3.0.0</div>
+        <h1>بوابة أوسان دو <span>القضائية والعدلية الذكية</span></h1>
+        <p class="subtitle">Universal Sovereign Judicial Mesh: Digital Notary, E-Litigation, Smart Enforcement, and ISO 20022 Interbank Escrow.</p>
+        
+        <div class="owner-banner">
+            <div><strong>المبتكر والمالك الحصري:</strong> المهندس / أوسان عادل عبدالباري أحمد سلطان</div>
+            <div><strong>الرقم الوطني:</strong> 01010305468</div>
+            <div><strong>خزينة البروتوكول:</strong> <code>0x22848f7963Ea954771120d842BD658f12D4Abb43</code></div>
+            <div><strong>الهاتف الرسمي:</strong> <span class="phone-display" dir="ltr">00967777852433</span></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 1. المتجر المالي -->
+        <div id="master-hub-financial-content" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-coins"></i> محفظة التبادل المالي اللحظي والـ DeFi</h2>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label>المبلغ المراد تبديله</label>
+                        <input type="number" id="swap-amt-input" value="1000">
+                    </div>
+                    <div class="form-group">
+                        <label>من العملة</label>
+                        <select id="swap-from-cur"><option value="USD">USD ($)</option><option value="YER">YER (ريال يمني)</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>إلى الصك المستلم</label>
+                        <select id="swap-to-cur"><option value="ADT">ADT Token</option><option value="RWA">صك حصة عقارية RWA</option></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. البوابة القضائية والعدلية (التبويبات الـ 11) -->
+        <div id="master-hub-judicial-content" style="display: block;">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('notary')"><i class="fas fa-stamp"></i> 1. التوثيق وكتابات العدل</button>
+                <button class="tab-btn" onclick="switchTab('litigation')"><i class="fas fa-gavel"></i> 2. قيد الدعاوى والمحاكم</button>
+                <button class="tab-btn" onclick="switchTab('enforcement')"><i class="fas fa-bolt"></i> 3. قضاء التنفيذ والأوامر</button>
+                <button class="tab-btn" onclick="switchTab('mediation')"><i class="fas fa-handshake"></i> 4. التراضي والوساطة</button>
+                <button class="tab-btn" onclick="switchTab('estate')"><i class="fas fa-sitemap"></i> 5. التركات وحصر الورثة</button>
+                <button class="tab-btn" onclick="switchTab('apostille')"><i class="fas fa-globe"></i> 6. الأبوستيل الدولي</button>
+                <button class="tab-btn" onclick="switchTab('hr')"><i class="fas fa-users-cog"></i> 9. الموارد البشرية والرقابة الإدارية</button>
+            </div>
+
+            <!-- تبويب التوثيق (TAB 1) -->
+            <div id="tab-notary" class="tab-pane active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-stamp"></i> التوثيق العدلي وإصدار صكوك الملكية العقارية RWA</h2>
+                    </div>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>الدولة</label>
+                            <select id="notary-country-select" onchange="onNotaryCountryChange(this.value)"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>المحافظة</label>
+                            <select id="notary-province-select" onchange="onNotaryProvinceChange(this.value)"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>محكمة التوثيق وكتابة العدل</label>
+                            <select id="notary-court-select"></select>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>رقم الصك المتولد آلياً</label>
+                            <input type="text" id="notary-deed-id" readonly style="color:var(--gold); font-weight:bold;">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم السجل العقاري</label>
+                            <input type="text" id="notary-cadastre" value="01-YE-REG-2026-90412">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم محرر كتابة العدل</label>
+                            <input type="text" id="notary-judicial-record" value="1448/2026/توثيق">
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>اسم المالك الكامل</label>
+                            <input type="text" id="notary-owner-name" value="أوسان عادل عبدالباري أحمد سلطان">
+                        </div>
+                        <div class="form-group">
+                            <label>الرقم الوطني / الهوية</label>
+                            <input type="text" id="notary-owner-nid" value="01010305468" oninput="updateDeedIdPreview()">
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>قيمة العقار ($)</label>
+                            <input type="number" id="notary-val" value="500000" oninput="calculateNotaryShare()">
+                        </div>
+                        <div class="form-group">
+                            <label>عدد التوكنات</label>
+                            <input type="number" id="notary-tokens" value="10" oninput="calculateNotaryShare()">
+                        </div>
+                        <div class="form-group">
+                            <label>الحصة المشاعة المحسوبة</label>
+                            <input type="text" id="notary-share" value="0.20%" readonly style="color:var(--emerald); font-weight:bold;">
+                        </div>
+                    </div>
+
+                    <!-- التواقيع الحية -->
+                    <div class="grid-2">
+                        <div class="signature-box">
+                            <label>1. توقيع وإقرار المشتري الحي بالشاشة:</label>
+                            <canvas id="buyer-notary-canvas" class="signature-canvas" width="480" height="135"></canvas>
+                            <div style="margin-top:8px;">
+                                <button type="button" class="btn-secondary" onclick="clearSignature('buyer-notary-canvas')">مسح</button>
+                                <button type="button" class="btn-secondary" onclick="autoSignBuyer('buyer-notary-canvas')">توقيع تلقائي</button>
+                            </div>
+                        </div>
+                        <div class="signature-box">
+                            <label>2. توقيع وخاتم كتابة العدل:</label>
+                            <canvas id="notary-canvas" class="signature-canvas" width="480" height="135"></canvas>
+                            <div style="margin-top:8px;">
+                                <button type="button" class="btn-secondary" onclick="clearSignature('notary-canvas')">مسح</button>
+                                <button type="button" class="btn-secondary" onclick="autoSign('notary-canvas')">ختم الموثق</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-top:16px;">
+                        <button type="button" class="btn-action" onclick="runNotarization()"><i class="fas fa-stamp"></i> إصدار وتوثيق الصك</button>
+                        <button type="button" class="btn-emerald" onclick="printDeedCertificate()"><i class="fas fa-print"></i> طباعة الصك PDF</button>
+                    </div>
+
+                    <div id="notary-result" class="result-box">
+                        <div class="deed-certificate" id="printable-deed">
+                            <h3>صك ملكية عقاري موثق (Digital Title Deed)</h3>
+                            <div class="cert-row"><span>رقم الصك المركب:</span><strong id="cert-deed-id">-</strong></div>
+                            <div class="cert-row"><span>اسم المالك المقيد:</span><strong id="cert-owner">-</strong></div>
+                            <div class="cert-row"><span>رقم الهوية:</span><strong id="cert-nid">-</strong></div>
+                            <div class="cert-row"><span>المحكمة المعتمدة:</span><strong id="cert-court">-</strong></div>
+                            <div class="cert-row"><span>الحصة المشاعة:</span><strong id="cert-shares">-</strong></div>
+                            <div class="cert-row"><span>بصمة التدقيق (transparencyAuditProof):</span><strong id="cert-audit-proof" style="color:var(--emerald);">-</strong></div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; text-align:center;">
+                                <div style="border:1px dashed #0284c7; padding:8px;">
+                                    <div style="font-size:0.8rem; font-weight:bold;">توقيع المشتري</div>
+                                    <img id="cert-buyer-sig-img" class="cert-signature-img" src="" alt="توقيع المشتري">
+                                    <div id="cert-buyer-sig-placeholder">[توقيع المشتري الحي]</div>
+                                </div>
+                                <div style="border:1px dashed #b8860b; padding:8px;">
+                                    <div style="font-size:0.8rem; font-weight:bold;">توقيع الموثق</div>
+                                    <img id="cert-notary-sig-img" class="cert-signature-img" src="" alt="توقيع كاتب العدل">
+                                    <div id="cert-notary-sig-placeholder">[ختم وتوقيع كتابة العدل]</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الموارد البشرية (TAB 9) -->
+            <div id="tab-hr" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-users-cog"></i> سجل كادر ومسؤولي وزارة العدل</h2>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table class="staff-table" id="hr-staff-table">
+                            <thead>
+                                <tr>
+                                    <th>الكود</th>
+                                    <th>الاسم والصفة القضائية</th>
+                                    <th>المحكمة / المقر</th>
+                                    <th>الدائرة</th>
+                                    <th>المسندة</th>
+                                    <th>المنجزة</th>
+                                    <th>الجارية</th>
+                                    <th>المعلقة</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hr-staff-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. مركز التقارير -->
+        <div id="master-hub-reports-content" style="display: none;">
+            <div class="card">
+                <h2><i class="fas fa-chart-pie"></i> مركز التقارير السيادية الشاملة</h2>
+                <p style="color:var(--text-muted); margin-top:8px;">مؤشرات حركة التوثيق وعوائد الخزينة والمقاصة اللامركزية.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- نقطة عزل وطباعة المستندات -->
+    <div id="print-mount-point"></div>
+
+    <!-- ربط ملفات الجافاسكريبت الخارجية بالتسلسل الصحيح -->
+    <script src="js/data/jurisdictions.js"></script>
+    <script src="js/data/staff-db.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

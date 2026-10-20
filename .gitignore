@@ -21,3 +21,79 @@ Thumbs.db
 .vercel/
 dist/
 out/
+
+# Environment Secrets & Private Credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+*.p12
+
+# Python Runtime & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+env/
+venv/
+.venv/
+ENV/
+
+# Node.js & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Vercel & Deployment Artifacts
+.vercel/
+.output/
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE & Editor Configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Temporary Test Scripts & Scratch Files (Development only)
+patch_*.py
+test_script_*.js
+temp_*.js
+test_check_*.py
+test_syntax_*.js
+*.tmp

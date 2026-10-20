@@ -1,0 +1,113 @@
+:root {
+    --bg-primary: #070c18;
+    --bg-secondary: #0e1628;
+    --card-bg: rgba(14, 22, 40, 0.92);
+    --gold: #d4af37;
+    --gold-light: #fef08a;
+    --emerald: #10b981;
+    --emerald-dark: #065f46;
+    --blue: #38bdf8;
+    --blue-dark: #0369a1;
+    --crimson: #f43f5e;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(212, 175, 55, 0.28);
+    --border-hover: rgba(212, 175, 55, 0.65);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-bottom: 70px;
+    background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 55%),
+                      radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+}
+
+.top-navbar {
+    background: rgba(7, 12, 24, 0.97);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+}
+
+.portal-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 1.05rem;
+}
+
+.top-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.header {
+    background: linear-gradient(180deg, #0e1628 0%, #070c18 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 28px 20px 22px;
+    text-align: center;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    padding: 5px 16px;
+    border-radius: 25px;
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; color: #fff; margin-bottom: 8px; font-weight: 800; }
+h1 span { color: var(--gold); text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+.subtitle { color: var(--text-muted); font-size: 0.98rem; max-width: 950px; margin: 0 auto; }
+
+.owner-banner {
+    background: rgba(16, 185, 129, 0.07);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 10px;
+    max-width: 1150px;
+    margin: 18px auto 0;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: #cbd5e1;
+}
+
+.phone-display {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.container { max-width: 1240px; margin: 24px auto; padding: 0 16px; }

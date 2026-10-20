@@ -43,18 +43,20 @@
 ## 📂 الهيكل البرمجي للمشروع (Project Structure)
 
 ```text
-awsan-dew-judicial-gateway/
-│
-├── index.html                  # الواجهة الرئيسية الموحدة (Dashboard & Modals)
-├── README.md                   # ملف التوثيق ودليل التشغيل
-│
-├── css/
-│   ├── sovereign-core.css      # متغيرات الألوان، الخطوط، وتنسيقات البنية التحتية
-│   ├── components.css          # تنسيقات البطاقات، الحقول، النوافذ، والأزرار
-│   └── print-engine.css        # محرك تنسيق طباعة الصكوك والشهادات الرسمية
-│
-└── js/
-    ├── app.js                  # المنطق البرمجي، إدارة التبويبات، والتواقيع الحية
-    └── data/
-        ├── jurisdictions.js    # شجرة المحاكم، المحافظات، والدوائر القضائية
-        └── staff-db.js         # قاعدة بيانات الكادر، السجلات الوظيفية والجلسات
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # النشر التلقائي السحابي على GitHub Pages
+├── frontend/
+│   ├── index.html              # الكود الموحد والمتكامل الذي يجمع الكودين
+│   ├── css/
+│   │   └── sovereign.css       # عزل وتنسيق التصميم والأنماط السيادية
+│   └── js/
+│       ├── app.js              # إدارة التبويبات والمراكز (Financial / Judicial / Reports)
+│       ├── notary-engine.js    # محرك الصكوك المتسلسلة ومعالجة التضارب (Error Registry)
+│       ├── signatures.js       # محرك التوقيع الحي والبصمة البيومترية
+│       └── estate-engine.js    # حصر التركات وتوليد الصكوك الفرعية
+├── backend/
+│   ├── main.py                 # واجهة برمجية FastAPI تحاكي الربط السحابي mTLS / ISO 20022
+│   └── requirements.txt
+├── LICENSE                     # رخصة الاستخدام والملكية الفكرية
+└── README.md                   # التوثيق الفني المعماري

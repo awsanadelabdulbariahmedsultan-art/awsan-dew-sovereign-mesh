@@ -13,7 +13,7 @@
 * **البريد الإلكتروني:** `awsan.sultan@gmail.com`
 * **محفظة الخزينة الرسمية للبروتوكول (1.0% Creator Royalty Vault):** `0x22848f7963Ea954771120d842BD658f12D4Abb43`
 * **معرف المشروع السحابي:** `845333755863` (Google Cloud / AI Studio)
-* **المستودع الرسمي على GitHub:** [awsan-dew-judicial-gateway](https://github.com/awsanadelabdulbariahmedsultan-art/awsan-dew-judicial-gateway)
+* **المستودع الرسمي على GitHub:** [awsan-dew-sovereign-mesh](awsanadelabdulbariahmedsultan-art/awsan-dew-sovereign-mesh)
 
 ---
 
@@ -52,7 +52,7 @@
 * 📖 **الدليل الفني والهندسي الشامل لفرق تقنية المعلومات بالوزارات:**
   * المسار داخل المستودع: [`MINISTRY_OF_JUSTICE_INTEGRATION_MANUAL.md`](./MINISTRY_OF_JUSTICE_INTEGRATION_MANUAL.md)
   * رابط العرض المباشر على GitHub:  
-    👉 **[فتح الدليل الفني الشامل على GitHub](https://github.com/awsanadelabdulbariahmedsultan-art/awsan-dew-judicial-gateway/blob/main/MINISTRY_OF_JUSTICE_INTEGRATION_MANUAL.md)**
+    👉 **[فتح الدليل الفني الشامل على GitHub](https://github.com/awsanadelabdulbariahmedsultan-art/awsanawsan-dew-sovereign-mesh/blob/main/MINISTRY_OF_JUSTICE_INTEGRATION_MANUAL.md)**
 * 📜 **وثيقة الترخيص وحماية الملكية الفكرية ونسبة الخزينة (1.0%):** [`LICENSE`](./LICENSE)
 * ⚙️ **نموذج إعداد المتغيرات البيئية الآمن:** [`.env`](./.env)
 

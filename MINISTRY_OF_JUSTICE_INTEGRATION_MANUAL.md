@@ -12,7 +12,7 @@
 * **Official Email Address:** `awsan.sultan@gmail.com`
 * **Official Protocol Royalty Vault (Immutable 1.0% Creator Royalty):** `0x22848f7963Ea954771120d842BD658f12D4Abb43`
 * **Google Cloud / AI Studio Project ID:** `845333755863`
-* **Official GitHub Repository:** [awsan-dew-sovereign-mesh](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fawsanadelabdulbariahmedsultan-art%2Fawsan-dew-sovereign-mesh)
+* **Official GitHub Repository:** [awsan-dew-sovereign-mesh]([https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2Fawsanadelabdulbariahmedsultan-art%2Fawsan-dew-sovereign-mesh](https://github.com/awsanadelabdulbariahmedsultan-art/awsan-dew-sovereign-mesh))
 
 ---
 

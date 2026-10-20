@@ -1,0 +1,60 @@
+PROPRIETARY SOVEREIGN COMMERCIAL PROTOCOL LICENSE (v3.0.0)
+================================================================================
+ALL RIGHTS RESERVED © 2026 TO ENG. AWSAN ADEL ABDULBARI AHMED SULTAN
+جمهورية اليمن • Republic of Yemen
+
+LEGAL INTELLECTUAL PROPERTY & SOVEREIGN PROTOCOL SPECIFICATION:
+--------------------------------------------------------------------------------
+Creator, Sole Architect & Intellectual Property Rights Owner:
+Eng. Awsan Adel Abdulbari Ahmed Sultan
+National Identification Number (الرقم الوطني): 01010305468
+Official Contact Phone (رقم الهاتف الرسمي): 00967777852433 / 00967776633003
+Official Email (البريد الإلكتروني الرسمي): awsan.sultan@gmail.com
+Official Sovereign Royalty Vault (محفظة الخزينة الرسمية):
+0x22848f7963Ea954771120d842BD658f12D4Abb43 (1.0% Creator Royalty)
+
+Certified Reown AppKit Project ID: bcf91aa026abbec87fec874fabd16d91
+Google Cloud / AI Studio Enterprise Project ID: 845333755863
+
+1. GRANT OF RESTRICTED COMMERCIAL & INSTITUTIONAL USE:
+Permission is hereby granted to authorized commercial partners, financial institutions,
+central bank payment switches, national cadastres, and accredited Ministries of Justice
+("Authorized Licensees") to access, integrate, and execute the interfaces provided by
+Awsan Dew Protocol & Sovereign Justice Mesh solely under the following binding conditions:
+
+  (a) ROYALTY PRESERVATION: Every transaction, settlement, liquidation, flight/hotel
+      booking, and RWA real estate tokenization deed processed through this protocol
+      MUST automatically allocate and route the mandatory 1.0% Creator Royalty directly
+      to the designated Sovereign Royalty Vault (0x22848f7963Ea954771120d842BD658f12D4Abb43).
+      Any modification, suppression, or diversion of this royalty mechanism terminates
+      this license immediately by operation of law.
+
+  (b) ATTRIBUTION & COPYRIGHT RETENTION: All copies of the software, SDKs, smart
+      contracts, API definitions, documentation, and user interfaces must prominently
+      and verbatim retain the creator's copyright notice, legal ownership details,
+      and National Identification credentials in all files and headers.
+
+  (c) MINISTRY OF JUSTICE & GOVERNMENT INTEGRATION: Accredited governmental entities,
+      courts, and judicial authorities are granted non-exclusive operational authority
+      to query, verify, notarize, and execute digital title deeds and judicial writs
+      via the official REST/Webhook endpoints defined in the protocol specifications.
+
+2. STRICT PROHIBITIONS & COMMERCIAL ENFORCEMENT:
+  (a) UNAUTHORIZED CLONING: No party may duplicate, reverse engineer, fork, re-brand,
+      white-label, or sell this repository or its underlying codebases as an independent
+      product without express written authorization signed by Eng. Awsan Sultan.
+
+  (b) NO SUB-LICENSING: This license is non-transferable and may not be sub-licensed
+      or assigned to third parties without prior notarized authorization.
+
+3. JURISDICTION & GOVERNING LAW:
+This agreement and all intellectual property rights herein are governed by the
+Intellectual Property and Copyright Laws of the Republic of Yemen, the WIPO
+Copyright Treaty (WCT), the Berne Convention for the Protection of Literary and
+Artistic Works, and the UNCITRAL Model Law on Electronic Transferable Records (MLETR).
+
+4. DISCLAIMER:
+THE SOFTWARE AND PROTOCOL ARE PROVIDED "AS IS", WITH REAL-TIME CONTINUOUS AUTONOMOUS
+CLOUD UPDATING ARCHITECTURE. IN NO EVENT SHALL THE CREATOR BE LIABLE FOR ANY DAMAGES
+ARISING FROM UNAUTHORIZED CODE TAMPERING, FORKS, OR CIRCUMVENTED CLEARING RAILS.
+================================================================================

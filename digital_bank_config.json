@@ -1,0 +1,1554 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "protocol": {
+    "name": "Awsan Dew Protocol & Institutional Gateway",
+    "version": "3.0.0",
+    "architecture": "Enterprise Multi-Rail Settlement & Open Blockchain Liquidity",
+    "officialRoyaltyVault": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+    "creator": {
+      "name": "Eng. Awsan Adel Abdulbari Ahmed Sultan",
+      "nationalId": "01010305468",
+      "country": "Republic of Yemen",
+      "phone": "+967 777 852 433",
+      "email": "awsan.sultan@gmail.com"
+    },
+    "feeSchedule": {
+      "creatorRoyaltyRate": 0.01,
+      "investorYieldRate": 0.003,
+      "centralBankClearingRate": 0.002,
+      "totalFeeRate": 0.015,
+      "merchantNetRate": 0.985
+    },
+    "judicialMesh": {
+      "version": "3.0.0",
+      "status": "OPERATIONAL_AUTONOMOUS",
+      "pillars": [
+        "Digital Notary & Title Attestation (التوثيق وكتابات العدل)",
+        "Electronic Litigation & Court Filings (المحاكم والتقاضي)",
+        "Judicial Enforcement Writs (قضاء التنفيذ والأوامر)",
+        "Mediation & International Arbitration (التراضي والتحكيم)",
+        "Estate Inheritance Allocations (التركات والورثة)",
+        "The Hague e-Apostille Legalization (الأبوستيل والتصديق الدولي)"
+      ],
+      "routerScript": "universal_justice_mesh_router.py",
+      "integrationManual": "MINISTRY_OF_JUSTICE_INTEGRATION_MANUAL.md"
+    }
+  },
+  "transactionLimitsPolicy": {
+    "policyType": "UNCAPPED_BLOCKCHAIN_LIQUIDITY",
+    "status": "OPEN_CEILING_ACTIVE",
+    "description": "سقوف مالية مفتوحة بالكامل بدون أي حد أقصى للعمليات اليومية أو الشهرية نظراً لتوفر وتدفق السيولة التلقائية والمستمرة عبر أحواض البلوكشين الذكية لتلبية احتياجات الشركات والمنصات الكبرى",
+    "limitsByCurrency": {
+      "YER_ADE": {
+        "currency": "YER (عدن والمحافظات الجنوبية والشرقية)",
+        "minPerTransaction": 1.0,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "YER_SAN": {
+        "currency": "YER (صنعاء والمحافظات الشمالية والوسطى)",
+        "minPerTransaction": 1.0,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "SAR": {
+        "currency": "SAR (ريال سعودي)",
+        "minPerTransaction": 0.1,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "USD": {
+        "currency": "USD (دولار أمريكي)",
+        "minPerTransaction": 0.01,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "EUR": {
+        "currency": "EUR (يورو أوروبي)",
+        "minPerTransaction": 0.01,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "AED": {
+        "currency": "AED (درهم إماراتي)",
+        "minPerTransaction": 0.1,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      },
+      "CRYPTO": {
+        "currency": "Crypto (USDT, AVAX, BTC, ETH, SOL, BNB, ADT)",
+        "minPerTransaction": 1e-06,
+        "maxPerTransaction": "UNLIMITED_OPEN",
+        "maxDailyVolume": "UNLIMITED_OPEN",
+        "maxMonthlyVolume": "UNLIMITED_OPEN",
+        "ceilingEnforced": false
+      }
+    }
+  },
+  "environments": {
+    "sandbox": {
+      "baseUrl": "https://sandbox.awsan-dew-store.vercel.app/api/v1",
+      "simulationMode": true,
+      "requiresRealMoney": false,
+      "autoApprove": true,
+      "mockClearingDelayMs": 250
+    },
+    "production": {
+      "baseUrl": "https://awsan-dew-store.vercel.app/api/v1",
+      "simulationMode": false,
+      "requiresRealMoney": true,
+      "securityStandard": "PCI-DSS Level 1 & Central Bank Interoperable",
+      "mTLSEnforced": true,
+      "hMacSigning": "HMAC-SHA256"
+    }
+  },
+  "iso20022StandardMessaging": {
+    "supportedMessageTypes": [
+      {
+        "type": "pacs.008.001.09",
+        "description": "Financial Institutional Customer Credit Transfer (أمر تحويل ائتماني مباشر للعميل)",
+        "format": "XML / JSON-LD",
+        "settlementRail": "CBY / SAMA / FedNow / SEPA"
+      },
+      {
+        "type": "pacs.002.001.10",
+        "description": "Payment Status Report & Clearing Confirmation (إشعار المقاصة وتأكيد الحالة)",
+        "format": "JSON Real-Time Webhook",
+        "settlementRail": "Automated Switch Acknowledgement"
+      },
+      {
+        "type": "camt.053.001.08",
+        "description": "Bank-to-Customer Cash Statement & Ledger Report (كشف حساب وتسوية الأرصدة المصرفية)",
+        "format": "JSON / CSV Stream",
+        "settlementRail": "Daily & Real-Time EOD Reconciliation"
+      },
+      {
+        "type": "pain.001.001.09",
+        "description": "Customer Credit Transfer Initiation for Merchants (بدء دفعات متعددة للتجار والشركات)",
+        "format": "Batch REST API",
+        "settlementRail": "Multi-Vendor Payout Switch"
+      }
+    ]
+  },
+  "webhookEventSubscriptions": {
+    "availableEvents": [
+      "payment.initiated",
+      "payment.otp_required",
+      "payment.authorized",
+      "payment.cleared_central_bank",
+      "payment.failed",
+      "royalty.vault_credited",
+      "crosschain.layerzero_dispatched",
+      "crosschain.layerzero_confirmed",
+      "settlement.partner_payout_completed"
+    ],
+    "retryPolicy": {
+      "maxRetries": 5,
+      "backoffStrategy": "exponential",
+      "initialIntervalSeconds": 2
+    }
+  },
+  "yemeniSovereignEWallets": {
+    "southAndEast": [
+      {
+        "id": "qutaibi_mobile",
+        "nameAr": "القطيبي موبايل",
+        "nameEn": "Al-Qutaibi Mobile",
+        "entity": "بنك القطيبي الإسلامي للتمويل الأصغر",
+        "region": "Aden & Southern Governorates",
+        "switch": "CBY Aden National Switch",
+        "apiEndpoint": "https://api.qutaibibank.com/v1/mobile",
+        "settlementCurrency": [
+          "YER_ADE",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "albusiri_mobile",
+        "nameAr": "البسيري موبايل",
+        "nameEn": "Al-Busiri Mobile",
+        "entity": "بنك البسيري للتمويل الأصغر",
+        "region": "Hadramaut / Aden",
+        "switch": "CBY Aden Switch",
+        "apiEndpoint": "https://api.albusiribank.com/v1/pay",
+        "settlementCurrency": [
+          "YER_ADE",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "hadramout_mobile",
+        "nameAr": "حضرموت موبايل",
+        "nameEn": "Hadramout Mobile",
+        "entity": "بنك حضرموت التجاري",
+        "region": "Hadramaut",
+        "switch": "CBY Switch",
+        "apiEndpoint": "https://api.hadramout-bank.com/v1/instant",
+        "settlementCurrency": [
+          "YER_ADE",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "bindoal_mobile",
+        "nameAr": "بن دول موبايل",
+        "nameEn": "Bin Doal Mobile",
+        "entity": "بنك بن دول للتمويل الأصغر",
+        "region": "Mukalla / Hadramaut",
+        "switch": "CBY Switch",
+        "apiEndpoint": "https://api.bindoalbank.com/v1/clearing",
+        "settlementCurrency": [
+          "YER_ADE",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "aden_cash",
+        "nameAr": "عدن كاش",
+        "nameEn": "Aden Cash",
+        "entity": "بنك عدن الإسلامي للتمويل الأصغر",
+        "region": "Aden",
+        "switch": "CBY Aden Switch",
+        "apiEndpoint": "https://api.adenbank.com/v1/clearing",
+        "settlementCurrency": [
+          "YER_ADE",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "shumool_mobile",
+        "nameAr": "الشمول موبايل",
+        "nameEn": "Al-Shumool Mobile",
+        "entity": "بنك الشمول للتمويل الأصغر",
+        "region": "Aden",
+        "switch": "CBY Aden Switch",
+        "apiEndpoint": "https://api.shumoolbank.com/v1/pay",
+        "settlementCurrency": [
+          "YER_ADE"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "sharq_mobile",
+        "nameAr": "الشرق موبايل",
+        "nameEn": "Al-Sharq Mobile",
+        "entity": "بنك الشرق اليمني للتمويل الأصغر",
+        "region": "Aden",
+        "switch": "CBY Aden Switch",
+        "apiEndpoint": "https://api.sharqbank.com/v1/pay",
+        "settlementCurrency": [
+          "YER_ADE"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "omgy_exchange",
+        "nameAr": "شبكة العمقي للصرافة",
+        "nameEn": "Al-Omgy Exchange Network",
+        "entity": "شركة العمقي للصرافة",
+        "region": "Hadramaut / Aden / Southern Governorates",
+        "switch": "Al-Omgy National Switch",
+        "apiEndpoint": "https://api.alomgy.com/v1/instant",
+        "settlementCurrency": [
+          "YER_ADE",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "qutaibi_cash",
+        "nameAr": "القطيبي كاش",
+        "nameEn": "Al-Qutaibi Cash",
+        "entity": "شركة القطيبي للصرافة",
+        "region": "Aden",
+        "switch": "Al-Qutaibi Cash Switch",
+        "apiEndpoint": "https://api.qutaibicash.com/v1/remit",
+        "settlementCurrency": [
+          "YER_ADE",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      }
+    ],
+    "northAndWest": [
+      {
+        "id": "hazmi_jaib",
+        "nameAr": "محفظة جيب",
+        "nameEn": "jaib Wallet",
+        "entity": "شركة الحزمي للصرافة",
+        "region": "Sanaa & Northern Governorates",
+        "switch": "CBY Sanaa Switch",
+        "apiEndpoint": "https://api.hazmico.com/v1/jaib-pay",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "one_cash",
+        "nameAr": "محفظة ون كاش",
+        "nameEn": "One Cash",
+        "entity": "شركة ون كاش لأنظمة الدفع الإلكتروني",
+        "region": "Sanaa",
+        "switch": "CBY National Switch",
+        "apiEndpoint": "https://api.onecash.ye/v1/clearing",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "mobile_money",
+        "nameAr": "موبايل موني",
+        "nameEn": "Mobile Money",
+        "entity": "بنك التسليف التعاوني والزراعي (كاك بنك)",
+        "region": "Sanaa",
+        "switch": "CAC Switch / CBY",
+        "apiEndpoint": "https://api.cacbank.com.ye/v1/mobilemoney",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "kuraimi_jawal",
+        "nameAr": "الكريمي جوال",
+        "nameEn": "Kuraimi Jawal",
+        "entity": "بنك الكريمي الإسلامي للتمويل الأصغر",
+        "region": "Sanaa / All Yemen",
+        "switch": "Kuraimi National Switch",
+        "apiEndpoint": "https://api.kcfb.com/v1/kuraimi-jawal",
+        "settlementCurrency": [
+          "YER_SAN",
+          "SAR",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "tadhamon_mahfazati",
+        "nameAr": "محفظتي",
+        "nameEn": "Mahfazati Wallet",
+        "entity": "بنك التضامن الإسلامي",
+        "region": "Sanaa / All Yemen",
+        "switch": "Tadhamon Switch / CBY",
+        "apiEndpoint": "https://api.tadhamonbank.com/v1/mahfazati",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "ykb_floosak",
+        "nameAr": "محفظة فلوسك",
+        "nameEn": "Floosak Wallet",
+        "entity": "بنك اليمن والكويت (YKB)",
+        "region": "Sanaa / All Yemen",
+        "switch": "YKB Switch / CBY",
+        "apiEndpoint": "https://api.yk-bank.com/v1/floosak",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "pyes_wallet",
+        "nameAr": "محفظة بيس",
+        "nameEn": "P-Yes Wallet",
+        "entity": "بنك الأمل للتمويل الأصغر",
+        "region": "Sanaa",
+        "switch": "Al-Amal Switch / CBY",
+        "apiEndpoint": "https://api.alamalbank.com/v1/pyes",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "easy_wallet",
+        "nameAr": "محفظة إيزي",
+        "nameEn": "Easy Wallet",
+        "entity": "منصة إيزي الإلكترونية للخدمات المالية",
+        "region": "Sanaa",
+        "switch": "Easy Platform Switch",
+        "apiEndpoint": "https://api.easy-wallet.ye/v1/pay",
+        "settlementCurrency": [
+          "YER_SAN"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "nasser_cash",
+        "nameAr": "محفظة كاش",
+        "nameEn": "Cash Wallet",
+        "entity": "شركة الناصر للصرافة",
+        "region": "Sanaa",
+        "switch": "Nasser Switch",
+        "apiEndpoint": "https://api.nasserexchange.com/v1/cash",
+        "settlementCurrency": [
+          "YER_SAN",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "yemen_wallet",
+        "nameAr": "يمن والت",
+        "nameEn": "Yemen Wallet",
+        "entity": "الهيئة العامة للبريد والتوفير البريدي",
+        "region": "Sanaa",
+        "switch": "Yemen Post Switch",
+        "apiEndpoint": "https://api.post.ye/v1/wallet",
+        "settlementCurrency": [
+          "YER_SAN"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "rial_mobile",
+        "nameAr": "ريال موبايل",
+        "nameEn": "Rial Mobile",
+        "entity": "البنك اليمني للإنشاء والتعمير",
+        "region": "Sanaa",
+        "switch": "YBRD Switch",
+        "apiEndpoint": "https://api.ybrd.com.ye/v1/rial",
+        "settlementCurrency": [
+          "YER_SAN"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "qased_pay",
+        "nameAr": "قاصد باي",
+        "nameEn": "Qased Pay",
+        "entity": "بنك قاصد أحمد الهديش",
+        "region": "Sanaa",
+        "switch": "Qased Switch",
+        "apiEndpoint": "https://api.qasedpay.com/v1/instant",
+        "settlementCurrency": [
+          "YER_SAN"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "shamil_money",
+        "nameAr": "شريان كاش / شامل موني",
+        "nameEn": "Shamil Money",
+        "entity": "بنك اليمن البحرين الشامل",
+        "region": "Sanaa",
+        "switch": "Shamil Switch / CBY",
+        "apiEndpoint": "https://api.shamilbank.com/v1/money",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "najm_remit",
+        "nameAr": "شبكة النجم للحوالات",
+        "nameEn": "Al-Najm Remittance Network",
+        "entity": "شبكة النجم للتحويلات المالية",
+        "region": "Sanaa / All Yemen",
+        "switch": "Al-Najm Switch",
+        "apiEndpoint": "https://api.alnajm.ye/v1/remit",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      },
+      {
+        "id": "emtiaz_remit",
+        "nameAr": "شبكة الامتياز للحوالات",
+        "nameEn": "Al-Emtiaz Remittance Network",
+        "entity": "شبكة الامتياز للتحويلات المالية",
+        "region": "Sanaa / All Yemen",
+        "switch": "Al-Emtiaz Switch",
+        "apiEndpoint": "https://api.alemtiaz.ye/v1/remit",
+        "settlementCurrency": [
+          "YER_SAN",
+          "USD",
+          "SAR"
+        ],
+        "limits": "UNLIMITED_OPEN_CEILING"
+      }
+    ],
+    "harwiCash": {
+      "name": "Al-Harwi Cash",
+      "nameAr": "الحروي كاش",
+      "entity": "Riyadh Al-Harwi Exchange Company",
+      "headquarters": "Taiz / Sana'a / Aden",
+      "phone": "777852433",
+      "merchantCode": "AWD-HARWI-01",
+      "switch": "Al-Harwi Express & Central Bank Clearing",
+      "settlementCurrencies": [
+        "YER_SAN",
+        "YER_ADE",
+        "SAR",
+        "USD"
+      ]
+    }
+  },
+  "layerZeroCrossChain": {
+    "standards": [
+      "OFTv2",
+      "ONFT",
+      "Chainlink CCIP"
+    ],
+    "crossChainVolumeCeiling": "UNLIMITED_OPEN_CEILING",
+    "supportedChains": [
+      {
+        "name": "Avalanche C-Chain",
+        "chainId": 43114,
+        "endpointId": 30106,
+        "rpc": "https://api.avax.network/ext/bc/C/rpc"
+      },
+      {
+        "name": "BNB Smart Chain",
+        "chainId": 56,
+        "endpointId": 30102,
+        "rpc": "https://bsc-dataseed.binance.org"
+      },
+      {
+        "name": "Ethereum Mainnet",
+        "chainId": 1,
+        "endpointId": 30101,
+        "rpc": "https://eth.llamarpc.com"
+      },
+      {
+        "name": "Polygon PoS",
+        "chainId": 137,
+        "endpointId": 30109,
+        "rpc": "https://polygon-rpc.com"
+      },
+      {
+        "name": "Arbitrum One",
+        "chainId": 42161,
+        "endpointId": 30110,
+        "rpc": "https://arb1.arbitrum.io/rpc"
+      },
+      {
+        "name": "Solana Network",
+        "chainId": 1399811149,
+        "endpointId": 30168,
+        "rpc": "https://api.mainnet-beta.solana.com"
+      }
+    ],
+    "security": {
+      "confirmations": 32,
+      "oracle": "Chainlink Decentralized Oracle Network",
+      "relayer": "LayerZero Labs Anycast Relayer"
+    }
+  },
+  "purchaseVoucherEngine": {
+    "engineStatus": "ACTIVE_OPERATIONAL",
+    "supportedCurrencies": [
+      "YER_SAN",
+      "YER_ADE",
+      "SAR",
+      "USD",
+      "USDT"
+    ],
+    "codeFormat": "{PREFIX}-{6_DIGIT_PIN_HASH}",
+    "expiryHours": 24,
+    "royaltyFee": "1.0% Auto-Routed to Vault",
+    "partnerAppMesh": [
+      {
+        "name": "توصيلك",
+        "nameEn": "Tawseelak",
+        "sector": "Logistics & Express Delivery",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "تساهيل",
+        "nameEn": "Tasaheel",
+        "sector": "Government & Electronic Services",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "ماء شملان",
+        "nameEn": "Shamlan Water",
+        "sector": "Beverage & Direct Supply",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "محلات",
+        "nameEn": "Mahallat",
+        "sector": "Retail & Merchant Stores",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "اطلبني",
+        "nameEn": "Etlobni",
+        "sector": "On-Demand Food & Groceries",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "مطاعم القرموشي",
+        "nameEn": "Al-Qarmoushi Restaurants",
+        "sector": "Food Chains & Hospitality",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "DEC Systems",
+        "nameEn": "DEC Systems",
+        "sector": "Advanced Technology Solutions",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "مابس",
+        "nameEn": "Maps Mobility",
+        "sector": "GIS & Ride-Hailing",
+        "status": "INTEGRATED"
+      },
+      {
+        "name": "متجر أوسان دو",
+        "nameEn": "Awsan Dew Store",
+        "sector": "Official Platform Marketplace",
+        "status": "INTEGRATED"
+      }
+    ]
+  },
+  "omnichainTreasuryContract": {
+    "contractName": "AwsanDewTreasury",
+    "solidityVersion": "^0.8.20",
+    "officialRoyaltyVault": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+    "royaltyRate": "1.0% (100 bps)",
+    "supportedNetworks": [
+      {
+        "name": "Avalanche C-Chain",
+        "chainId": 43114,
+        "nativeCoin": "AVAX"
+      },
+      {
+        "name": "BNB Smart Chain (BSC)",
+        "chainId": 56,
+        "nativeCoin": "BNB"
+      },
+      {
+        "name": "Ethereum Mainnet",
+        "chainId": 1,
+        "nativeCoin": "ETH"
+      },
+      {
+        "name": "Polygon PoS",
+        "chainId": 137,
+        "nativeCoin": "POL/MATIC"
+      },
+      {
+        "name": "Arbitrum One",
+        "chainId": 42161,
+        "nativeCoin": "ETH"
+      },
+      {
+        "name": "Optimism",
+        "chainId": 10,
+        "nativeCoin": "ETH"
+      },
+      {
+        "name": "Base Network",
+        "chainId": 8453,
+        "nativeCoin": "ETH"
+      }
+    ],
+    "tokenizationCapabilities": [
+      "Tokenized Purchase Vouchers (commit-reveal cryptographic vouchers with 24h expiry)",
+      "Tokenized ISO 20022 Settlement Receipts (pacs.008 on-chain immutable audit trail)",
+      "Omnichain Fungible Token (OFTv2) cross-chain asset messaging via LayerZero v2",
+      "Uncapped institutional liquidity without transaction caps"
+    ]
+  },
+  "superAppServices": {
+    "status": "OPERATIONAL_ECOSYSTEM",
+    "description": "منظومة الخدمات المصرفية الشاملة المستوحاة من محفظة جيب وأنظمة البنوك الرقمية العالمية",
+    "servicesCatalog": [
+      {
+        "id": "transfers",
+        "name": "تحويلات مالية",
+        "desc": "تحويل مباشر فوري بين الحسابات والمحافظ والشبكات",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "remittances",
+        "name": "حوالات محلية (شبكة تحويل)",
+        "desc": "العمقي، القطيبي كاش، النجم، والامتياز",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "bill_pay",
+        "name": "الشحن والسداد",
+        "desc": "يمن موبايل، يو، سبأفون، يمن نت ADSL، يمن فورجي 4G، ماء وكهرباء، جامعات",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "online_shopping",
+        "name": "شراء اونلاين",
+        "desc": "توليد كود شراء فوري وإصدار بطاقات فيزا/ماستركارد افتراضية",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "merchant_pos",
+        "name": "دفع المشتريات",
+        "desc": "سداد نقاط البيع POS ومسح باركود الـ QR للمتاجر عبر جيب ومحافظ أخرى",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "atm_withdrawal",
+        "name": "سحب نقدي",
+        "desc": "سحب بدون بطاقة عبر صرافات YKB وصرافات كاك بنك وخريطة الصرافات",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gov_payments",
+        "name": "المدفوعات",
+        "desc": "رسوم MPS، بوابة E-Sadad، الهيئة العامة للزكاة، والوطنية للتمويل",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "entertainment",
+        "name": "خدمات ترفيه",
+        "desc": "شحن ألعاب، تطبيقات، بطاقات نت، وبطاقات شحن كويتية وإماراتية وسعودية",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "my_jaib",
+        "name": "جيبي",
+        "desc": "جيب العائلة، هدايا نقدية، فرقك (قطية تقاسم المصاريف)، وخزينة الادخار",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "aiKycStandards": {
+    "engine": "Neural Vision & Biometric Liveness Verification",
+    "supportedDocumentTypes": [
+      {
+        "type": "id_card",
+        "label": "البطاقة الشخصية الوطنية",
+        "country": "Yemen & GCC"
+      },
+      {
+        "type": "passport",
+        "label": "جواز السفر الدولي",
+        "country": "Global"
+      },
+      {
+        "type": "driver_license",
+        "label": "رخصة القيادة الرسمية",
+        "country": "Global"
+      }
+    ],
+    "faceLivenessValidation": {
+      "required": true,
+      "antiSpoofing": "3D Depth & Blink Analysis",
+      "minimumConfidenceThreshold": 0.985
+    }
+  },
+  "twoFactorAuthStandards": {
+    "supportedMethods": [
+      {
+        "method": "EMAIL_OTP",
+        "expirySeconds": 120,
+        "codeLength": 6
+      },
+      {
+        "method": "TOTP_AUTHENTICATOR_APP",
+        "algorithm": "HMAC-SHA1",
+        "intervalSeconds": 30,
+        "codeLength": 6,
+        "compatibleApps": [
+          "Google Authenticator",
+          "Authy",
+          "Microsoft Authenticator"
+        ]
+      },
+      {
+        "method": "BIOMETRIC_FINGERPRINT",
+        "hardwareSupported": true,
+        "fallback": "TRANSACTION_PIN"
+      }
+    ]
+  },
+  "realEstateRwaTokenization": {
+    "status": "ACTIVE_OPERATIONAL",
+    "description": "توكزة العقارات والأصول الحقيقية وإتاحة الملكية الجزئية والتملك المشترك لأكثر من مستثمر",
+    "standards": [
+      "ERC-3643",
+      "ERC-20 RWA Fractional Shares",
+      "Chainlink Proof of Reserve"
+    ],
+    "minimumInvestmentUsd": 100.0,
+    "multiOwnerSupport": true,
+    "rentalYieldDistribution": "Automated Smart Contract Monthly Yield (12.5% APY Average)",
+    "officialRoyaltyFee": "1.0% to 0x22848f7963Ea954771120d842BD658f12D4Abb43",
+    "dynamicPaymentFields": {
+      "visaMastercard": [
+        "cardName",
+        "cardNumber",
+        "cardExpiry",
+        "cardCvv"
+      ],
+      "yemeniEWallets": [
+        "walletHolderName",
+        "walletAccount",
+        "walletPin"
+      ],
+      "gulfSovereignSwitches": [
+        "switchCardOrIban",
+        "switchInstantId",
+        "switchBankName"
+      ],
+      "cryptoBlockchain": [
+        "buyerCryptoAddress",
+        "cryptoNetwork"
+      ],
+      "voucherCode": [
+        "voucherCode",
+        "voucherPin"
+      ]
+    },
+    "deedVerificationChannels": [
+      {
+        "channel": "On-Platform Instant Deed Search",
+        "description": "محرك البحث والتحقق اللحظي من الصكوك أسفل قسم العقارات بالمنصة",
+        "url": "https://awsan-dew-store.vercel.app/"
+      },
+      {
+        "channel": "Public EVM Blockchain Explorers",
+        "description": "مستكشفات البلوكشين العامة المحايدة (Snowtrace / BscScan / Etherscan) برقم الهاش أو عنوان العقد",
+        "contractAddress": "0x22848f7963Ea954771120d842BD658f12D4Abb43"
+      },
+      {
+        "channel": "Account Transaction Reports Ledger",
+        "description": "سجل وتقارير الحساب المالي في محفظة المستخدم بالمنصة (تبويب التقارير)"
+      },
+      {
+        "channel": "Official Email & Encrypted Dispatch",
+        "recipientEmail": "awsan.sultan@gmail.com"
+      }
+    ],
+    "hardCapEnforcement": {
+      "totalPropertyTokens": 5000,
+      "tokenPriceUsd": 100.0,
+      "totalPropertyValuationUsd": 500000.0,
+      "discreteWholeTokensOnly": true,
+      "revertReason": "require(prop.tokensSold + tokenCount <= prop.totalTokens, 'Insufficient available tokens')",
+      "description": "قيد مالي تشفيري صارم يمنع بيع أو إصدار أي توكن إضافي فوق سقف 5000 توكن لمنع التضخم وحماية الملاك"
+    },
+    "version": "2.9.4",
+    "p2pSecondaryResalePortal": {
+      "status": "ACTIVE_OPERATIONAL",
+      "orderMatching": "Sub-Second Cloud & On-Chain Smart Escrow",
+      "directP2PListing": {
+        "sellerPriceControl": "User sets custom asking price (e.g. $105/token)",
+        "creatorRoyaltyDeduction": "1.0% routed to 0x22848f7963Ea954771120d842BD658f12D4Abb43",
+        "netSellerPayout": "99.0% credited to seller sovereign balance upon buyer execution"
+      },
+      "instantLiquidityBuyback": {
+        "description": "تخارج نقدي فوري مضمون من مجمع سيولة الخزينة دون انتظار مشترٍ",
+        "liquiditySpreadTotal": "2.0% ($98.00/token guaranteed from $100 base valuation)",
+        "allocation": {
+          "creatorRoyalty": "1.0% to official treasury vault 0x22848f7963Ea954771120d842BD658f12D4Abb43",
+          "liquidityPoolReserve": "1.0% buffer for automated market-making and volatility protection"
+        }
+      },
+      "subDeedIssuanceStandard": {
+        "format": "AWD-[Country]-[Region]-[PropType]-[NationalID]-SUB[N]",
+        "lineageTracking": "Maintains parentDeedId and acquisitionMarket=P2P_SECONDARY_ESCROW",
+        "searchability": "Searchable in main deed engine alongside Master Deeds"
+      },
+      "failedTransactionLedger": {
+        "trackingFields": [
+          "txId",
+          "originalDeedAttempt",
+          "errorCode",
+          "reason",
+          "status",
+          "linkedSuccessDeedId"
+        ],
+        "resolutionSymbol": "🔄 صك معالج بديل",
+        "autoRetryMechanism": "Re-routes to secondary clearance rail on timeout or duplicate cadastre resolution"
+      }
+    },
+    "cadastralAuthoritiesDirectory": [
+      {
+        "countryCode": "YE",
+        "countryName": "Republic of Yemen (الجمهورية اليمنية)",
+        "flag": "🇾🇪",
+        "cadastreAuthority": "الهيئة العامة للأراضي والمساحة والتخطيط العمراني والسجل العقاري",
+        "cadastreUrl": "https://galsup.gov.ye",
+        "commercialRegistry": "وزارة الصناعة والتجارة - الإدارة العامة للشركات والسجل التجاري",
+        "commercialUrl": "https://moit.gov.ye",
+        "notaryAuthority": "وزارة العدل - هيئة التوثيق القضائي وكتابات العدل",
+        "notaryUrl": "https://moj.gov.ye",
+        "projectionsStandard": "WGS84 UTM Zone 38N/39N & Cadastral Plans"
+      },
+      {
+        "countryCode": "SA",
+        "countryName": "Kingdom of Saudi Arabia (المملكة العربية السعودية)",
+        "flag": "🇸🇦",
+        "cadastreAuthority": "الهيئة العامة للعقار (REGA) - منصة السجل العقاري (RER)",
+        "cadastreUrl": "https://rer.sa",
+        "commercialRegistry": "وزارة التجارة - المركز السعودي للأعمال ومنصة وافي",
+        "commercialUrl": "https://mc.gov.sa",
+        "notaryAuthority": "وزارة العدل - منصة ناجز (Najiz) للتوثيق والإفراغ العقاري",
+        "notaryUrl": "https://najiz.sa",
+        "projectionsStandard": "Ain Geospatial & Ain Cadastre"
+      },
+      {
+        "countryCode": "AE",
+        "countryName": "United Arab Emirates (الإمارات العربية المتحدة)",
+        "flag": "🇦🇪",
+        "cadastreAuthority": "دائرة الأراضي والأملاك بدبي (DLD) / دائرة البلديات بأبوظبي",
+        "cadastreUrl": "https://dubailand.gov.ae",
+        "commercialRegistry": "وزارة الاقتصاد - السجل الاقتصادي الوطني (NER)",
+        "commercialUrl": "https://moec.gov.ae",
+        "notaryAuthority": "محاكم دبي وأبوظبي - بوابة كاتب العدل الرقمي",
+        "notaryUrl": "https://dc.gov.ae",
+        "projectionsStandard": "Makani Smart Coordinates"
+      },
+      {
+        "countryCode": "EG",
+        "countryName": "Arab Republic of Egypt (جمهورية مصر العربية)",
+        "flag": "🇪🇬",
+        "cadastreAuthority": "مصلحة الشهر العقاري والتوثيق - بوابة مصر الرقمية",
+        "cadastreUrl": "https://digital.gov.eg",
+        "commercialRegistry": "جهاز تنمية التجارة الداخلية (ITDA) - السجل التجاري",
+        "commercialUrl": "https://itda.gov.eg",
+        "notaryAuthority": "وزارة العدل المصرية - قطاع التوثيق القضائي المميكن",
+        "notaryUrl": "https://moj.gov.eg",
+        "projectionsStandard": "Egyptian Transverse Mercator (ETM)"
+      }
+    ],
+    "ministryOfJusticeNotaryBridge": {
+      "status": "READY_FOR_GOVERNMENT_INTEGRATION",
+      "dualTrackArchitecture": {
+        "track1_instantExecution": "Sub-second on-chain escrow & token holding allocation without government latency blocks",
+        "track2_asyncNotarySync": "Asynchronous REST/Webhook payload dispatch to Ministry of Justice cadastre registers"
+      },
+      "apiEndpoints": {
+        "syncDeed": "POST /api/v1/justice/notary-escrow-sync",
+        "queryDeedStatus": "GET /api/v1/justice/verify-deed/{deedId}"
+      },
+      "securityStandard": "mTLS 1.3 / HMAC-SHA256 Digital Signatures",
+      "supportedJusticePortals": [
+        {
+          "country": "Yemen",
+          "portal": "Ministry of Justice Judicial Cadastre",
+          "url": "https://moj.gov.ye"
+        },
+        {
+          "country": "Saudi Arabia",
+          "portal": "Najiz Portal & Real Estate Notary",
+          "url": "https://najiz.sa"
+        },
+        {
+          "country": "UAE",
+          "portal": "Dubai Courts Digital Notary Public",
+          "url": "https://dc.gov.ae"
+        },
+        {
+          "country": "Egypt",
+          "portal": "Ministry of Justice Real Estate Registration",
+          "url": "https://moj.gov.eg"
+        }
+      ],
+      "authenticationScheme": {
+        "type": "Dedicated Bearer Token & HMAC Mutual Signature",
+        "productionEndpoint": "https://api.awsan-dew.com/v1/justice/notary-escrow-sync",
+        "sandboxEndpoint": "https://sandbox-api.awsan-dew.com/v1/justice/notary-escrow-sync",
+        "keyRotationPolicy": "Automated 180-day rotation or sovereign on-demand revocation",
+        "ipWhitelistingSupported": true,
+        "scopes": [
+          "notary:deed:create",
+          "notary:deed:verify",
+          "courts:claim:file",
+          "enforcement:writ:execute",
+          "estate:inheritance:settle"
+        ]
+      }
+    },
+    "multinationalAssetPolicy": {
+      "isStandardSupported": true,
+      "applicableEntities": [
+        "Microsoft Data Centers",
+        "Google Cloud Campus",
+        "SpaceX Starship Infrastructure",
+        "Multinational Funds"
+      ],
+      "securityPerimeterGuideline": "Campus perimeter coordinates displayed; internal infrastructure blueprints masked for operational security while preserving full legal title registry numbers."
+    }
+  },
+  "flightBookingGdsEngine": {
+    "status": "ACTIVE_OPERATIONAL",
+    "gdsNetworks": [
+      "Amadeus",
+      "Sabre",
+      "Travelport",
+      "IATA NDC"
+    ],
+    "passengerPassportRequirements": {
+      "fullNameAsInPassport": true,
+      "passportNumberRequired": true,
+      "passportExpiryCheck": true,
+      "passengerClassifications": [
+        "adult_male",
+        "adult_female",
+        "child",
+        "infant"
+      ]
+    },
+    "pnrGeneration": "Instant Confirmed PNR with On-Chain Ledger Audit",
+    "ticketDelivery": {
+      "syncToLinkedAccount": true,
+      "emailCopy": "awsan.sultan@gmail.com",
+      "recordInTransactionReports": true
+    }
+  },
+  "comprehensiveNationalities": {
+    "totalCount": 50,
+    "hasCustomFallback": true,
+    "fallbackKey": "other",
+    "description": "Comprehensive list of sovereign world nationalities with manual custom text entry fallback",
+    "supportedNationalities": [
+      "اليمنية (Yemeni)",
+      "السعودية (Saudi)",
+      "الإماراتية (Emirati)",
+      "العمانية (Omani)",
+      "القطرية (Qatari)",
+      "الكويتية (Kuwaiti)",
+      "البحرينية (Bahraini)",
+      "المصرية (Egyptian)",
+      "الأردنية (Jordanian)",
+      "السورية (Syrian)",
+      "العراقية (Iraqi)",
+      "اللبنانية (Lebanese)",
+      "الفلسطينية (Palestinian)",
+      "السودانية (Sudanese)",
+      "المغربية (Moroccan)",
+      "الجزائرية (Algerian)",
+      "التونسية (Tunisian)",
+      "الليبية (Libyan)",
+      "الموريتانية (Mauritanian)",
+      "الصومالية (Somali)",
+      "الجيبوتية (Djiboutian)",
+      "جزر القمر (Comorian)",
+      "التركية (Turkish)",
+      "البريطانية (British)",
+      "الأمريكية (American)",
+      "الألمانية (German)",
+      "الفرنسية (French)",
+      "الإيطالية (Italian)",
+      "الإسبانية (Spanish)",
+      "السويسرية (Swiss)",
+      "الروسية (Russian)",
+      "الصينية (Chinese)",
+      "الهندية (Indian)",
+      "الباكستانية (Pakistani)",
+      "البنغالية (Bangladeshi)",
+      "الماليزية (Malaysian)",
+      "الإندونيسية (Indonesian)",
+      "الفلبينية (Filipino)",
+      "الإثيوبية (Ethiopian)",
+      "الكندية (Canadian)",
+      "الأسترالية (Australian)",
+      "اليابانية (Japanese)",
+      "الكورية الجنوبية (South Korean)",
+      "الهولندية (Dutch)",
+      "السويدية (Swedish)",
+      "النرويجية (Norwegian)",
+      "البرازيلية (Brazilian)",
+      "جنوب إفريقيا (South African)",
+      "جنسية أخرى (كتابة يدوية - Other)"
+    ]
+  },
+  "hospitalityMeshCatalog": {
+    "hierarchicalLevels": [
+      "country",
+      "province",
+      "property"
+    ],
+    "supportedUnitTypes": [
+      "فندق فاخر 5 نجوم",
+      "فندق سياحي",
+      "شاليه عائلي بمسبح",
+      "منتجع سياحي شاطئي",
+      "شقق فندقية مفروشة",
+      "فيلا خاصة"
+    ],
+    "customPropertyLinkingEnabled": true,
+    "customPropertyVerificationFields": [
+      "customHotelName",
+      "customHotelType",
+      "customHotelUrl",
+      "customHotelPhone"
+    ],
+    "activeCountries": [
+      "اليمن (Republic of Yemen)",
+      "المملكة العربية السعودية (KSA)",
+      "الإمارات العربية المتحدة (UAE)",
+      "جمهورية مصر العربية (Egypt)",
+      "دولة قطر",
+      "دولة الكويت",
+      "سلطنة عمان",
+      "مملكة البحرين",
+      "المملكة الأردنية الهاشمية",
+      "الجمهورية التركية",
+      "المملكة المتحدة والولايات المتحدة",
+      "ماليزيا وإندونيسيا والمالديف"
+    ]
+  },
+  "realEstateTokenPaymentRails": {
+    "tokenFaceValueUsd": 100.0,
+    "rentalYieldApy": "12.5%",
+    "creatorRoyaltyBps": 100,
+    "creatorRoyaltyVault": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+    "supportedDebitRails": [
+      {
+        "category": "Yemeni E-Wallets",
+        "options": [
+          "محفظة جيب",
+          "القطيبي موبايل",
+          "الكريمي جوال",
+          "فلوسك YKB",
+          "كاك بنك موبايل موني",
+          "ون كاش",
+          "عدن كاش"
+        ]
+      },
+      {
+        "category": "Regional & Central Bank Switches",
+        "options": [
+          "مدى SAMA",
+          "STC Pay",
+          "آني CBUAE",
+          "ميزة وإنستاباي مصر",
+          "كي نت الكويت",
+          "نافس قطر"
+        ]
+      },
+      {
+        "category": "Crypto & Blockchain",
+        "options": [
+          "USDT (Avalanche/BSC)",
+          "ADT Token",
+          "AVAX Native",
+          "BNB Native",
+          "ETH Native"
+        ]
+      },
+      {
+        "category": "Voucher Codes & Cards",
+        "options": [
+          "Jaib/Qutaibi Voucher Code",
+          "Visa / Mastercard 3DS",
+          "IBAN Wire"
+        ]
+      }
+    ]
+  },
+  "checkoutAndSettlementLifecycle": {
+    "supportedCheckoutModes": [
+      {
+        "mode": "PAY_ON_ARRIVAL",
+        "title": "الدفع عند الوصول / الاستلام",
+        "description": "سداد نقدي عند الوصول للمنشأة الفندقية أو استلام التذكرة مع ضمان الحجز المالي برقم PNR رسمي"
+      },
+      {
+        "mode": "IN_APP_SOVEREIGN_BALANCE",
+        "title": "الدفع من رصيدي التراكمي المودع بالمنظومة",
+        "description": "خصم فوري مباشر من رصيد المحافظ المودع ($1,250.00 USD) مع زر شحن وتغذية الرصيد اللحظي",
+        "topupShortcut": true
+      },
+      {
+        "mode": "DIRECT_E_WALLET",
+        "title": "الدفع باستخدام المحفظة الإلكترونية",
+        "description": "مقاصة فورية عبر محافظ البنوك اليمنية (جيب، القطيبي، الكريمي، فلوسك...) والمقاسم الإقليمية (مدى، STC Pay، آني...)"
+      },
+      {
+        "mode": "PURCHASE_VOUCHER_CODE",
+        "title": "كود الشراء الفوري",
+        "description": "سداد لحظي بكود الشراء المشفر ورمز PIN السري"
+      },
+      {
+        "mode": "INTERNATIONAL_CARDS_CRYPTO",
+        "title": "البطاقات والعملات المشفرة",
+        "description": "Visa, Mastercard 3DS, USDT, ADT, AVAX"
+      }
+    ],
+    "customHospitalitySync": {
+      "whatsAppAutomatedDispatch": true,
+      "autoAddToLiveCatalog": true,
+      "localStoragePersistence": true,
+      "verificationGate": "GDS_HOSPITALITY_MESH"
+    }
+  },
+  "countryPaymentRailsCatalog": {
+    "dynamicCountryFilterEnabled": true,
+    "description": "ربط ديناميكي مباشر بين الدولة وأنظمة الدفع الفعلية المتواجدة بها مع إتاحة البلوكشين والبطاقات الدولية عابرة للحدود",
+    "supportedCountries": {
+      "المملكة العربية السعودية": {
+        "currency": "SAR",
+        "centralSwitch": "SAMA Mada Switch",
+        "bnplServices": [
+          "تمارا (Tamara)",
+          "تابي (Tabby)"
+        ],
+        "wallets": [
+          "STC Pay",
+          "Urpay",
+          "Tiqmo",
+          "Apple Pay SAMA"
+        ],
+        "instantBanking": [
+          "سريع (SARIE) - الراجحي / الأهلي / الرياض / الإنماء"
+        ],
+        "cryptoRails": [
+          "USDT",
+          "AVAX",
+          "ADT Token"
+        ]
+      },
+      "الجمهورية اليمنية": {
+        "currency": "YER",
+        "centralSwitch": "CBY Unified Clearing Switch",
+        "wallets": [
+          "محفظة جيب (الحزمي)",
+          "القطيبي موبايل",
+          "الكريمي جوال / حاسب",
+          "محفظة فلوسك (YKB)",
+          "موبايل موني (كاك بنك)",
+          "ون كاش",
+          "عدن كاش",
+          "البسيري"
+        ],
+        "voucherEngine": "Jaib/Qutaibi Instant Purchase Voucher (24h PIN)",
+        "cryptoRails": [
+          "USDT",
+          "AVAX",
+          "ADT Token"
+        ]
+      },
+      "الإمارات العربية المتحدة": {
+        "currency": "AED",
+        "centralSwitch": "CBUAE Aani Platform",
+        "bnplServices": [
+          "تمارا (Tamara UAE)",
+          "تابي (Tabby UAE)"
+        ],
+        "wallets": [
+          "e& money",
+          "PayBy / Botim",
+          "Apple Pay UAE"
+        ],
+        "instantBanking": [
+          "FAB / ENBD / ADCB Instant Clearing"
+        ]
+      },
+      "جمهورية مصر العربية": {
+        "currency": "EGP",
+        "centralSwitch": "CBE Meeza / InstaPay Network",
+        "instantPayment": [
+          "إنستاباي (InstaPay)",
+          "فوري (Fawry Pay)"
+        ],
+        "wallets": [
+          "فودافون كاش",
+          "أورنج كاش",
+          "اتصالات كاش",
+          "WE Pay"
+        ],
+        "bnplServices": [
+          "فاليو (valU)"
+        ]
+      },
+      "دولة الكويت": {
+        "currency": "KWD",
+        "centralSwitch": "KNET / WAMD (بنك الكويت المركزي)",
+        "wallets": [
+          "Apple Pay Kuwait",
+          "NBK / KFH Direct"
+        ]
+      },
+      "سلطنة عمان": {
+        "currency": "OMR",
+        "centralSwitch": "OmanNet Switch",
+        "wallets": [
+          "ثواني (Thawani)",
+          "بي موب (PayMob)"
+        ]
+      },
+      "مملكة البحرين": {
+        "currency": "BHD",
+        "centralSwitch": "Benefit / BenefitPay",
+        "instantBanking": [
+          "Fawri / Fawri+"
+        ]
+      },
+      "المملكة الأردنية الهاشمية": {
+        "currency": "JOD",
+        "centralSwitch": "CliQ / JoPACC",
+        "wallets": [
+          "زين كاش",
+          "أورنج موني",
+          "إي فواتيركم"
+        ]
+      }
+    }
+  },
+  "universalServicePaymentPortals": {
+    "supportedServices": [
+      "flights",
+      "hotels",
+      "cars",
+      "realestate"
+    ],
+    "featuresAcrossAllServices": {
+      "countrySpecificPaymentRails": true,
+      "inAppSovereignBalanceDebit": true,
+      "bankWireWithIbanAndAccount": {
+        "fields": [
+          "bankName",
+          "bankAccount",
+          "bankIban",
+          "bankDepositor",
+          "bankRef"
+        ],
+        "supportedInAllCountries": true
+      },
+      "blockchainVerifiedReservationAndDeed": {
+        "servicesWithOnChainDeed": [
+          "realestate",
+          "cars"
+        ],
+        "smartContractTreasury": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+        "creatorRoyaltyRate": "1.0%"
+      },
+      "sovereignBalanceShortcut": {
+        "initialBalanceUsd": 1250.0,
+        "topupModalLinked": true
+      }
+    }
+  },
+  "officialSovereignDepositChannels": {
+    "bankWire": {
+      "saudiArabia": {
+        "banks": "Al-Rajhi Bank / Saudi National Bank (SNB)",
+        "iban": "SA0380000000608010103054",
+        "beneficiary": "Awsan Adel Abdulbari Ahmed Sultan (Awsan Dew Ecosystem)"
+      },
+      "yemen": {
+        "alQutaibiBank": {
+          "accountNumber": "1010305468",
+          "headquarters": "Aden"
+        },
+        "alKuraimiBank": {
+          "accountNumber": "1010305468",
+          "headquarters": "Sana'a"
+        },
+        "ykbBank": {
+          "accountNumber": "777852433",
+          "headquarters": "Sana'a"
+        }
+      }
+    },
+    "yemeniWallets": {
+      "jaibWallet": {
+        "phone": "777852433",
+        "merchantCode": "AWD-JAIB-01",
+        "provider": "Hazmi Exchange"
+      },
+      "qutaibiMobile": {
+        "phone": "777852433",
+        "accountNumber": "1010305468",
+        "provider": "Al-Qutaibi Islamic Bank"
+      },
+      "kuraimiJawal": {
+        "phone": "777852433",
+        "service": "Haseb",
+        "provider": "Al-Kuraimi Islamic Bank"
+      },
+      "floosakYkb": {
+        "phone": "777852433",
+        "provider": "Yemen Kuwait Bank"
+      },
+      "oneCash": {
+        "phone": "777852433",
+        "provider": "One Cash System"
+      },
+      "mobileMoney": {
+        "phone": "777852433",
+        "terminalId": "996600",
+        "provider": "CAC Bank"
+      },
+      "harwiCash": {
+        "phone": "777852433",
+        "merchantCode": "AWD-HARWI-01",
+        "provider": "Riyadh Al-Harwi Exchange Company"
+      }
+    },
+    "cryptoOnChain": {
+      "vaultAddress": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+      "supportedNetworks": [
+        "Avalanche C-Chain",
+        "BNB Smart Chain (BSC)",
+        "Ethereum Mainnet",
+        "Polygon PoS"
+      ],
+      "supportedTokens": [
+        "USDT",
+        "ADT",
+        "AVAX",
+        "BNB",
+        "ETH",
+        "BTC"
+      ]
+    },
+    "voucherEngine": {
+      "supportedProviders": [
+        "Jaib Wallet",
+        "Al-Qutaibi Mobile",
+        "Floosak YKB"
+      ],
+      "redemptionFeePercent": 1.0,
+      "validityHours": 24
+    }
+  },
+  "cryptoSettlementConversionRates": {
+    "USDT": {
+      "usdRate": 1.0,
+      "peg": "USD"
+    },
+    "ADT": {
+      "usdRate": 1.0,
+      "peg": "USD"
+    },
+    "AVAX": {
+      "usdRate": 28.0,
+      "network": "Avalanche"
+    },
+    "BNB": {
+      "usdRate": 590.0,
+      "network": "BNB Chain"
+    },
+    "ETH": {
+      "usdRate": 3380.0,
+      "network": "Ethereum"
+    },
+    "BTC": {
+      "usdRate": 94500.0,
+      "network": "Bitcoin"
+    }
+  },
+  "stateTreasuryCentralBankAccounts": {
+    "cbyAden": {
+      "bankName": "البنك المركزي اليمني - عدن",
+      "bankCode": "CBY_ADE",
+      "swiftBic": "CBYEYESA",
+      "generalConsolidatedTreasuryAccount": {
+        "name": "حساب الإيرادات العامة للحكومة - خزانة الدولة الموحدة",
+        "accountNumber": "01001-001001-CBY-ADE",
+        "iban": "YE92CBYE0001001001001001"
+      },
+      "dedicatedSpecializedFunds": {
+        "justiceModernizationFund": {
+          "fundName": "صندوق دعم وتحديث أجهزة القضاء والتوثيق العقاري",
+          "accountNumber": "22004-CBY-ADE",
+          "description": "توريد الرسوم القضائية ومحررات التوثيق الرسمية"
+        },
+        "realEstateTaxAndDutiesFund": {
+          "fundName": "صندوق ضريبة التصرفات العقارية ورسوم السجل العيني",
+          "accountNumber": "22008-CBY-ADE",
+          "description": "توريد الضرائب العينية ورسوم مصلحة الأراضي GALSUP"
+        }
+      }
+    },
+    "cbySanaa": {
+      "bankName": "البنك المركزي اليمني - صنعاء",
+      "bankCode": "CBY_SAN",
+      "swiftBic": "CBYEYESN",
+      "generalConsolidatedTreasuryAccount": {
+        "name": "حساب الإيرادات العامة المشتركة - خزانة الدولة المركزية",
+        "accountNumber": "01002-002002-CBY-SAN",
+        "iban": "YE92CBYE0002002002002002"
+      },
+      "dedicatedSpecializedFunds": {
+        "justiceModernizationFund": {
+          "fundName": "صندوق دعم وتطوير السلطة القضائية وكتابات العدل",
+          "accountNumber": "22005-CBY-SAN",
+          "description": "توريد رسوم التوثيق والمحاكم وقيد الدعاوى"
+        },
+        "realEstateTaxAndDutiesFund": {
+          "fundName": "صندوق رسوم السجل العقاري والمساحة والتخطيط العمراني",
+          "accountNumber": "22009-CBY-SAN",
+          "description": "توريد رسوم الإسقاط المساحي والشهر العقاري"
+        }
+      }
+    },
+    "creatorRoyaltyVault": {
+      "vaultAddress": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+      "royaltyPercentage": "1.0%",
+      "contractStandard": "ERC-20 / Avalanche C-Chain / BSC",
+      "creator": "Eng. Awsan Adel Abdulbari Ahmed Sultan"
+    },
+    "creatorRoyaltySplit": {
+      "totalRoyaltyPercentage": "1.0%",
+      "splitPolicy": "50/50 Dual Allocation (0.5% On-Chain + 0.5% Central Bank)",
+      "cryptoVaultAllocation": {
+        "percentage": "0.5%",
+        "vaultAddress": "0x22848f7963Ea954771120d842BD658f12D4Abb43",
+        "displayPolicy": "FULL_42_CHAR_UNCLIPPED_ADDRESS_MANDATORY",
+        "network": "Avalanche C-Chain, BSC, Ethereum"
+      },
+      "centralBankAccountAllocation": {
+        "percentage": "0.5%",
+        "beneficiaryName": "Eng. Awsan Adel Abdulbari Ahmed Sultan (المهندس أوسان عادل عبدالباري أحمد سلطان)",
+        "nationalId": "01010305468",
+        "phones": [
+          "00967777852433",
+          "00967776633003"
+        ],
+        "accounts": {
+          "cbyAden": {
+            "bankName": "البنك المركزي اليمني - عدن",
+            "accountNumber": "01001-DEV-305468-ADE",
+            "iban": "YE92CBYE0001010103054681"
+          },
+          "cbySanaa": {
+            "bankName": "البنك المركزي اليمني - صنعاء",
+            "accountNumber": "01002-DEV-305468-SAN",
+            "iban": "YE92CBYE0002010103054682"
+          }
+        }
+      }
+    }
+  }
+}

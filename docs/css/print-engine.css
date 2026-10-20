@@ -1,0 +1,61 @@
+#print-mount-point {
+    display: none;
+}
+
+@media print {
+    body > *:not(#print-mount-point) {
+        display: none !important;
+    }
+    
+    html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    #print-mount-point {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 10px 14px !important;
+        margin: 0 !important;
+        font-size: 10.5pt !important;
+    }
+    
+    #print-mount-point * {
+        visibility: visible !important;
+    }
+    
+    .deed-certificate {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border: 4px double #d4af37 !important;
+        box-shadow: none !important;
+        padding: 20px !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .cert-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        border-bottom: 1px dashed #cbd5e1 !important;
+        padding: 5px 0 !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .cert-signature-img {
+        display: inline-block !important;
+        max-height: 75px !important;
+        max-width: 220px !important;
+    }
+    
+    @page {
+        size: A4 portrait;
+        margin: 10mm 8mm 10mm 8mm;
+    }
+}
